@@ -47,10 +47,78 @@
 					</ol>
 				</small>
 			</section>
-			<section>
-				Why Dafny?
-				<p>Add infrastructure pic, mention Boogie, z3, compilation</p>
-				<p>Show</p>
+			<section>Why Dafny?
+				<section id="stretch">
+					<div class="fragment fade-up">
+						<img src="css/images/dafny-infra.jpg" style="width: 30rem; 
+					height: 15rem; 
+					border-radius: 10px;" />
+						<small>
+							<ul>
+								<li>Designed as a verification-aware programming language,
+									requiring verification along with
+									code development</li>
+								<li style="margin-top: 1rem;">Verifier is run as part of the compiler. As such, a
+									programmer
+									interacts with it the
+									same way as with the static type checker</li>
+								<li style="margin-top: 1rem;">Verifier is powered by <a
+										href="https://research.microsoft.com/boogie">Boogie</a> and
+									<a href="https://github.com/z3prover">Z3</a>. The general proof framework is that of
+									Hoare logic
+								</li>
+								<li style="margin-top: 1rem;">From verified programs, the compiler can produce code for
+									a
+									number of different
+									backends: the .NET platform via intermediate C# files, Java, Javascript, Go, and C++
+								</li>
+							</ul>
+						</small>
+					</div>
+				</section>
+				<section>
+					<div style="display: flex; align-items: flex-start; gap: 7rem;">
+						<div style="flex: 1;">
+							<small>
+								<ul>
+									<li>Dafny was designed by Rustan Leino at Microsoft Research after his
+										previous work on
+										developing ESC/Java and Spec#</li>
+									<li class="fragment" data-fragment-index="2" style="margin-top: 1rem;">Author of the
+										book
+										<a href="https://program-proofs.com">Program Proofs</a>
+									</li>
+									<li class="fragment" data-fragment-index="4" style="margin-top: 1rem;">Owner of
+										<a href="https://www.youtube.com/channel/UCP2eLEql4tROYmIYm5mA27A">Verification
+											Corner</a> YouTube channel
+									</li>
+								</ul>
+							</small>
+						</div>
+						<div style="flex: 1; display: flex; flex-direction: row;">
+							<img class="fragment" data-fragment-index="1" src="css/images/rustan-leino.png" style="
+					width: 10rem;
+					height: 14.5rem; 
+					border-radius: 10px;" />
+							<img class="fragment" data-fragment-index="3" src="css/images/program-proofs-book-cover.jpg"
+								style="
+					margin-left: 3rem;
+					width: 10rem;
+					height: 14.5rem; 
+					border-radius: 10px;" />
+						</div>
+					</div>
+				</section>
+				<section>
+					<div class="fragment fade-in">
+						<p>Because it's successfully being used in production by AWS</p>
+						<iframe width="550" height="340" src="https://www.youtube.com/embed/oshxAJGrwMU"
+							style="border-radius: 10px;"
+							title="AWS re:Inforce 2024 - Proving the correctness of AWS authorization (IAM401)"
+							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+							referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+					</div>
+				</section>
 			</section>
 			<section>
 				<h4>Floyd Logic</h4>
