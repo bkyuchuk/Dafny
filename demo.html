@@ -125,7 +125,7 @@
 			<section>Floyd Logic
 				<section data-auto-animate>
 					<pre>
-						<code data-id="code-snippet" data-line-numbers>
+						<code data-id="floyd-decoration" data-line-numbers>
 							method Triple(x: int) returns (r: int) 
 							  requires 0 <= x
 							  ensures r == 3 * x {
@@ -138,23 +138,40 @@
 				</section>
 				<section data-auto-animate>
 					<pre>
-						<code data-id="code-snippet" data-line-numbers="11-12|10|9-10|8|7-8|6|5">
+						<code data-id="floyd-decoration" data-line-numbers="11-12|10|9-10|8|7-8|6|5">
 							method Triple(x: int) returns (r: int)
 							  requires 0 <= x
 							  ensures r == 3 * x {
 								[ 0 <= x ==> 3 * x == x + 2 * x ]
 								[ forall y :: 3 * x == x + 2 * x ]
 								var y;
-								[ 3 * x == x + 2 * x ]
+								[ x + 2 * x == 3 * x ]
 								y := 2 * x;
-								[ 3 * x == x + y ]
+								[ x + y == 3 * x ]
 								r := x + y;
 								[ r == 3 * x ]
 							}
 						</code>
 					</pre>
 				</section>
-				<section>Vertical 2</section>
+				<section>
+					<pre><code>var t := Triple(u + 3);</code></pre>
+					<pre class="fragment fade-in">
+						<code data-trim>
+							var x’, r’;
+							x’ := u + 3;
+							assert 0 <= x'
+							assume r’ == 3 * x';
+							t := r’;
+						</code>
+					</pre>
+					<pre class="fragment fade-in"><code>Q[t := 3 * (u + 3)]</code></pre>
+					<pre class="fragment fade-in">
+						<code data-trim>
+							[ u == 15 ] t := Triple(u + 3) [t == 54]
+						</code>
+					</pre>
+				</section>
 			</section>
 			<section data-background-iframe="https://dafny.org" data-background-interactive>
 				<h4>Introduction to Dafny</h4>
