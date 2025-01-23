@@ -37,7 +37,7 @@
 				<small>
 					<ol>
 						<li class="fragment fade-up">Why Dafny?</li>
-						<li class="fragment fade-up">Building blocks of Dafny</li>
+						<li class="fragment fade-up">Floyd Logic & Building Blocks of Dafny</li>
 						<li class="fragment fade-up">Recursion & Termination</li>
 						<li class="fragment fade-up">Inductive Datatypes</li>
 						<li class="fragment fade-up">Lemmas & Proofs</li>
@@ -121,7 +121,7 @@
 					</div>
 				</section>
 			</section>
-			<!-- ####################### Why Dafny? ####################### -->
+			<!-- ####################### Introduction to Dafny ####################### -->
 			<section>Floyd Logic
 				<section data-auto-animate>
 					<pre>
@@ -173,35 +173,62 @@
 					</pre>
 				</section>
 			</section>
-			<section data-background-iframe="https://dafny.org" data-background-interactive>
-				<h4>Introduction to Dafny</h4>
+			<section>Building Blocks of Dafny
+				<pre>
+					<code data-trim data-line-numbers="1-4|6-10|12-14|16-20|22-26">
+						function Average(a: int, b: int): int
+						  requires 0 <= a && 0 <= b {
+							(a + b) / 2
+						}
+
+						method Triple’(x: int) returns (r: int)
+						  ensures Average(r, 3 * x) == 3 * x {
+							var y := 2 * x;
+							r := x + y;
+						}
+						
+						predicate IsEven(x: int) {
+							x % 2 == 0
+						}
+
+						method IllegalAssignment() returns (y: int) {
+							ghost var x := 10;
+							y := 2 * x; // error: cannot assign to compiled
+							// variable using a ghost
+						}
+
+						ghost method DoubleQuadruple(x: int) returns (a: int, b: int)
+						  ensures a == 2 * x && b == 4 * x {
+							a := 2 * x;
+							b := 2 * a;
+						}
+					</code>
+				</pre>
 			</section>
-		</div>
-	</div>
 
-	<script src="dist/reveal.js"></script>
-	<script src="plugin/zoom/zoom.js"></script>
-	<script src="plugin/notes/notes.js"></script>
-	<script src="plugin/search/search.js"></script>
-	<script src="plugin/markdown/markdown.js"></script>
-	<script src="plugin/highlight/highlight.js"></script>
-	<script>
+			<script src="dist/reveal.js"></script>
+			<script src="plugin/zoom/zoom.js"></script>
+			<script src="plugin/notes/notes.js"></script>
+			<script src="plugin/search/search.js"></script>
+			<script src="plugin/markdown/markdown.js"></script>
+			<script src="plugin/highlight/highlight.js"></script>
+			<script>
 
-		// Also available as an ES module, see:
-		// https://revealjs.com/initialization/
-		Reveal.initialize({
-			controls: false,
-			progress: true,
-			center: true,
-			hash: true,
-			slideNumber: true,
-			autoAnimate: true,
+				// Also available as an ES module, see:
+				// https://revealjs.com/initialization/
+				Reveal.initialize({
+					controls: false,
+					progress: true,
+					center: true,
+					hash: true,
+					slideNumber: true,
+					autoAnimate: true,
 
-			// Learn about plugins: https://revealjs.com/plugins/
-			plugins: [RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight]
-		});
+					// Learn about plugins: https://revealjs.com/plugins/
+					plugins: [RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight]
+				});
 
-	</script>
+			</script>
 
 </body>
 
