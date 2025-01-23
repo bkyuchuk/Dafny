@@ -24,8 +24,7 @@
 <body>
 	<div class="reveal">
 		<div class="slides">
-			<section id="stretch" data-background-image="css/images/wide_fullhd_lmu-munich.jpg"
-				data-background-opacity="0.1">
+			<section data-background-image="css/images/wide_fullhd_lmu-munich.jpg" data-background-opacity="0.1">
 				<h4>Verifying Imperative
 					Programs With Dafny</h4>
 				<small>Deductive Software Verification</small>
@@ -49,7 +48,7 @@
 			</section>
 			<!-- ####################### Why Dafny? ####################### -->
 			<section>Why Dafny?
-				<section id="stretch">
+				<section>
 					<div class="fragment fade-up">
 						<img src="css/images/dafny-infra.jpg" style="width: 30rem; 
 					height: 15rem; 
@@ -121,7 +120,7 @@
 					</div>
 				</section>
 			</section>
-			<!-- ####################### Introduction to Dafny ####################### -->
+			<!-- ####################### Floyd Logic ####################### -->
 			<section>Floyd Logic
 				<section data-auto-animate>
 					<pre>
@@ -155,9 +154,9 @@
 					</pre>
 				</section>
 				<section>
-					<pre><code>var t := Triple(u + 3);</code></pre>
+					<pre><code class="language-javascript">var t := Triple(u + 3);</code></pre>
 					<pre class="fragment fade-in">
-						<code data-trim>
+						<code class="language-html" data-trim>
 							var x’, r’;
 							x’ := u + 3;
 							assert 0 <= x'
@@ -173,9 +172,10 @@
 					</pre>
 				</section>
 			</section>
+			<!-- ####################### Building Blocks of Dafny ####################### -->
 			<section>Building Blocks of Dafny
 				<pre>
-					<code data-trim data-line-numbers="1-4|6-10|12-14|16-20|22-26">
+					<code class="language-javascript" data-trim data-line-numbers="1-4|6-10|12-14|16-20|22-26">
 						function Average(a: int, b: int): int
 						  requires 0 <= a && 0 <= b {
 							(a + b) / 2
@@ -197,13 +197,71 @@
 							// variable using a ghost
 						}
 
-						ghost method DoubleQuadruple(x: int) returns (a: int, b: int)
+						ghost method DoubleQuadruple(x: int) 
+						returns (a: int, b: int)
 						  ensures a == 2 * x && b == 4 * x {
 							a := 2 * x;
 							b := 2 * a;
 						}
 					</code>
 				</pre>
+			</section>
+			<section>Recursion & Termination
+				<section>
+					<small>
+						<ul>
+							<li class="fragment" data-fragment-index="1" style="margin-top: 1rem;"><em>Partial
+									correctness</em>: every terminating call is correct,
+								but
+								not all calls do indeed terminate</li>
+							<li class="fragment" data-fragment-index="3" style="margin-top: 1rem;"><em>Total
+									correctness</em>:
+								partially correct and always
+								terminates
+							</li>
+							<li class="fragment" data-fragment-index="5" style="margin-top: 1rem;"><em>Termination
+									metric</em>: activation record callee < activation record caller </li>
+						</ul>
+					</small>
+					<pre class="fragment fade-in" class="fragment" data-fragment-index="2">
+						<code data-trim data-line-numbers class="language-javascript" data-trim>
+							method PartialId(x: int) returns (y: int)
+								ensures y == x {
+								if x % 2 == 0 {
+									y := x;
+								} else {
+									y := PartialId(x); // error: failure to prove termination
+								}
+							}
+						</code>
+					</pre>
+					<pre class="fragment" data-fragment-index="4" class="fragment fade-in">
+						<code data-trim data-line-numbers class="language-html" data-trim>
+							function Fib(n: nat): nat {
+								if n < 2 then n else Fib(n - 2) + Fib(n - 1)
+							}
+						</code>
+					</pre>
+				</section>
+				<section style="text-align: left;">
+					<small>A binary relation is well-founded if the following
+						three conditions hold:
+						<ul>
+							<li style="margin-top: 1rem;">is <em>irreflexive</em>: the relation never relates an element
+								to itself</li>
+							<li style="margin-top: 1rem;">is <em>transitive</em>: whenever a ≻ b and b ≻ c hold, then so
+								does a ≻ c, for any a, b, and c
+							</li>
+							<li style="margin: 1rem 0 1rem 0;">the relation has no <em>infinite descending chain</em>
+							</li>
+						</ul>
+						Here are the built-in well-founded relations for some of Dafny’s types:
+					</small>
+					<img src="css/images/dafny-types-decreases.png" style="
+					width: 50rem;
+					height: 14.5rem; 
+					border-radius: 10px;" />
+				</section>
 			</section>
 
 			<script src="dist/reveal.js"></script>
