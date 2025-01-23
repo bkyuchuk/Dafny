@@ -126,8 +126,11 @@
 				<section data-auto-animate>
 					<pre>
 						<code data-id="code-snippet" data-line-numbers>
-							method Triple(x: int) returns (r: int) {
-								var y := 2 * x;
+							method Triple(x: int) returns (r: int) 
+							  requires 0 <= x
+							  ensures r == 3 * x {
+								var y;
+								y := 2 * x;
 								r := x + y;
 							}
 						</code>
@@ -135,11 +138,18 @@
 				</section>
 				<section data-auto-animate>
 					<pre>
-						<code data-id="code-snippet" data-line-numbers>
-							method Triple(x: int) returns (r: int) {
-								[ true ]
-								var y := 2 * x;
+						<code data-id="code-snippet" data-line-numbers="11-12|10|9-10|8|7-8|6|5">
+							method Triple(x: int) returns (r: int)
+							  requires 0 <= x
+							  ensures r == 3 * x {
+								[ 0 <= x ==> 3 * x == x + 2 * x ]
+								[ forall y :: 3 * x == x + 2 * x ]
+								var y;
+								[ 3 * x == x + 2 * x ]
+								y := 2 * x;
+								[ 3 * x == x + y ]
 								r := x + y;
+								[ r == 3 * x ]
 							}
 						</code>
 					</pre>
