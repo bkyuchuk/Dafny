@@ -47,6 +47,7 @@
 					</ol>
 				</small>
 			</section>
+			<!-- ####################### Why Dafny? ####################### -->
 			<section>Why Dafny?
 				<section id="stretch">
 					<div class="fragment fade-up">
@@ -120,9 +121,29 @@
 					</div>
 				</section>
 			</section>
-			<section>
-				<h4>Floyd Logic</h4>
-				<section>Vertical 1</section>
+			<!-- ####################### Why Dafny? ####################### -->
+			<section>Floyd Logic
+				<section data-auto-animate>
+					<pre>
+						<code data-id="code-snippet" data-line-numbers>
+							method Triple(x: int) returns (r: int) {
+								var y := 2 * x;
+								r := x + y;
+							}
+						</code>
+					</pre>
+				</section>
+				<section data-auto-animate>
+					<pre>
+						<code data-id="code-snippet" data-line-numbers>
+							method Triple(x: int) returns (r: int) {
+								[ true ]
+								var y := 2 * x;
+								r := x + y;
+							}
+						</code>
+					</pre>
+				</section>
 				<section>Vertical 2</section>
 			</section>
 			<section data-background-iframe="https://dafny.org" data-background-interactive>
