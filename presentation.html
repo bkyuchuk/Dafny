@@ -241,7 +241,19 @@
 			<!-- ####################### Lemmas & Proofs ####################### -->
 			<section>Lemmas & Proofs
 				<section style="text-align: left;">
-
+					<small>
+						<p class="fragment" data-fragment-index="1">In Dafny, a lemma:</p>
+						<ul class="fragment" data-fragment-index="2">
+							<li style="margin-top: 1rem;">is simply a ghost method 😉</li>
+							<li style="margin-top: 1rem;">allows us to reuse the same proof in multiple places
+							</li>
+							<li style="margin-top: 1rem;">is never compiled into code for use at run time and is
+								used only by the verifier
+							</li>
+							<li style="margin-top: 1rem;">is usually called recursively and uses induction as proof
+								technique</li>
+						</ul>
+					</small>
 				</section>
 			</section>
 
