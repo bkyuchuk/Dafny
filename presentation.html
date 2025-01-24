@@ -173,39 +173,10 @@
 				</section>
 			</section>
 			<!-- ####################### Building Blocks of Dafny ####################### -->
-			<section>Building Blocks of Dafny
-				<pre>
-					<code class="language-javascript" data-trim data-line-numbers="1-4|6-10|12-14|16-20|22-26">
-						function Average(a: int, b: int): int
-						  requires 0 <= a && 0 <= b {
-							(a + b) / 2
-						}
-
-						method Triple’(x: int) returns (r: int)
-						  ensures Average(r, 3 * x) == 3 * x {
-							var y := 2 * x;
-							r := x + y;
-						}
-						
-						predicate IsEven(x: int) {
-							x % 2 == 0
-						}
-
-						method IllegalAssignment() returns (y: int) {
-							ghost var x := 10;
-							y := 2 * x; // error: cannot assign to compiled
-							// variable using a ghost
-						}
-
-						ghost method DoubleQuadruple(x: int) 
-						returns (a: int, b: int)
-						  ensures a == 2 * x && b == 4 * x {
-							a := 2 * x;
-							b := 2 * a;
-						}
-					</code>
-				</pre>
+			<section>
+				<p>Building Blocks of Dafny</p>
 			</section>
+			<!-- ####################### Recursion & Termination ####################### -->
 			<section>Recursion & Termination
 				<section>
 					<small>
@@ -220,28 +191,9 @@
 								terminates
 							</li>
 							<li class="fragment" data-fragment-index="5" style="margin-top: 1rem;"><em>Termination
-									metric</em>: activation record callee < activation record caller </li>
+									metric</em>: activation record caller ≻ activation record callee</li>
 						</ul>
 					</small>
-					<pre class="fragment fade-in" class="fragment" data-fragment-index="2">
-						<code data-trim data-line-numbers class="language-javascript" data-trim>
-							method PartialId(x: int) returns (y: int)
-								ensures y == x {
-								if x % 2 == 0 {
-									y := x;
-								} else {
-									y := PartialId(x); // error: failure to prove termination
-								}
-							}
-						</code>
-					</pre>
-					<pre class="fragment" data-fragment-index="4" class="fragment fade-in">
-						<code data-trim data-line-numbers class="language-html" data-trim>
-							function Fib(n: nat): nat {
-								if n < 2 then n else Fib(n - 2) + Fib(n - 1)
-							}
-						</code>
-					</pre>
 				</section>
 				<section style="text-align: left;">
 					<small>A binary relation is well-founded if the following
@@ -263,6 +215,36 @@
 					border-radius: 10px;" />
 				</section>
 			</section>
+			<!-- ####################### Inductive Datatypes ####################### -->
+			<section>Inductive Datatypes
+				<section style="text-align: left;">
+					<small>
+						<p class="fragment" data-fragment-index="1">In Dafny, a datatype is:</p>
+						<ul>
+							<li class="fragment" data-fragment-index="2" style="margin-top: 1rem;">immutable</li>
+							<li class="fragment" data-fragment-index="3" style="margin-top: 1rem;">defines what shape,
+								or
+								<em>variant</em>, data can have
+							</li>
+							<li class="fragment" data-fragment-index="4" style="margin-top: 1rem;">defines the values,
+								or
+								<em>payload</em>, each variant carries
+							</li>
+							<li class="fragment" data-fragment-index="5" style="margin-top: 1rem;">is defined
+								recursively, that's why
+								<em>inductive</em>
+							</li>
+						</ul>
+					</small>
+				</section>
+			</section>
+			<!-- ####################### Lemmas & Proofs ####################### -->
+			<section>Lemmas & Proofs
+				<section style="text-align: left;">
+
+				</section>
+			</section>
+
 
 			<script src="dist/reveal.js"></script>
 			<script src="plugin/zoom/zoom.js"></script>
@@ -285,9 +267,7 @@
 					// Learn about plugins: https://revealjs.com/plugins/
 					plugins: [RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight]
 				});
-
 			</script>
-
 </body>
 
 </html>
