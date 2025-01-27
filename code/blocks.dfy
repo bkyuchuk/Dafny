@@ -14,7 +14,7 @@ predicate IsEven(x: int) {
   x % 2 == 0
 }
 
-// Important!
+//Important!
 // method IllegalAssignment() returns (y: int) {
 //     ghost var x := 10;
 //     y := 2 * x;

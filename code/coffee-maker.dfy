@@ -79,7 +79,7 @@ module CoffeeLibrary {
       grinder := new Grinder();
       waterTank := new WaterTank();
       new;
-      Repr := {this, grinder, waterTank} + grinder.Repr + waterTank.Repr;
+      Repr := {this, grinder, waterTank} + grinder.Repr + waterTank.Repr; // dynamic frame
     }
 
     ghost predicate Valid()
