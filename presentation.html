@@ -44,7 +44,7 @@
 					</ol>
 				</small>
 			</section>
-			<!-- ####################### Why Dafny? ####################### -->
+			<!-- ################################################ Why Dafny? ################################################ -->
 			<section>Why Dafny?
 				<section>
 					<div class="fragment fade-up">
@@ -113,13 +113,13 @@
 					</div>
 				</section>
 			</section>
-			<!-- ####################### Building Blocks of Dafny ####################### -->
+			<!-- ################################################ Building Blocks of Dafny ################################################ -->
 			<section>
 				<p>Building Blocks of Dafny</p>
 				<span>See examples in <mark
 						style="border-radius: 0.5rem; padding: 0.3rem;">code/blocks.dfy</mark></span>
 			</section>
-			<!-- ####################### Recursion & Termination ####################### -->
+			<!-- ################################################ Recursion & Termination ################################################ -->
 			<section>Recursion & Termination
 				<section>
 					<small>
@@ -160,7 +160,7 @@
 					border-radius: 10px;" />
 				</section>
 			</section>
-			<!-- ####################### Inductive Datatypes ####################### -->
+			<!-- ################################################ Inductive Datatypes ################################################ -->
 			<section>Inductive Datatypes
 				<section style="text-align: left;">
 					<small>
@@ -185,7 +185,7 @@
 					</small>
 				</section>
 			</section>
-			<!-- ####################### Lemmas & Proofs ####################### -->
+			<!-- ################################################ Lemmas & Proofs ################################################ -->
 			<section>Lemmas & Proofs
 				<section style="text-align: left;">
 					<small>
@@ -205,23 +205,53 @@
 					</small>
 				</section>
 			</section>
-			<!-- ####################### Loop Invariants ####################### -->
+			<!-- ################################################ Loop Invariants ################################################ -->
 			<section>Loop Invariants
 				<section style="text-align: left;">
 					<small>
-						The specification of a loop consists of two parts:
+						<p class="fragment" style="margin-top: 1rem;" data-fragment-index="1">The specification of a
+							loop consists of two parts:</p>
 						<ul>
-							<li style="margin-top: 1rem;"><em>loop invariant</em>: restricts the state space the loop is
+							<li class="fragment" style="margin-top: 1rem;" data-fragment-index="2"><em>loop
+									invariant</em>: restricts the
+								state space the loop is
 								allowed to explore</li>
-							<li style="margin-top: 1rem;"><em>loop guard</em>: controls when the loop continues doing
+							<li class="fragment" style="margin-top: 1rem;" data-fragment-index="3"><em>loop guard</em>:
+								controls when the
+								loop continues doing
 								steps and when to stop</li>
 						</ul>
-						<p class="fragment" data-fragment-index="6">See examples in <mark
-								style="border-radius: 0.5rem; padding: 0.3rem;">code/loops.dfy</mark></p>
+						<p class="fragment" data-fragment-index="4">Loops also have inferred frames. A local variable is
+							inside the loop frame if the loop body syntactically contains
+							an assignment to the variable.</p>
+						<p class="fragment" data-fragment-index="5">See examples in <mark
+								style="border-radius: 0.5rem; padding: 0.3rem;">code/loops.dfy</mark>
+						</p>
 					</small>
 				</section>
 			</section>
-
+			<!-- ################################################ Arrays & Searching ################################################ -->
+			<section>Arrays & Searching
+				<section style="text-align: left;">
+					<small>
+						<p class="fragment" style="margin-top: 1rem;" data-fragment-index="1">Arrays are mutable,
+							reference
+							types
+							like objects, but with special members.</p>
+						<p class="fragment" style="margin-top: 1rem;" data-fragment-index="2">Sequences are value types
+							and
+							can be sliced like in Python.</p>
+						<p class="fragment" data-fragment-index="3">See <mark style="border-radius: 0.5rem; padding: 0.3rem;">code/arrays.dfy</mark></p>
+					</small>
+				</section>
+			</section>
+			<!-- ################################################ Dynamic Frames ################################################ -->
+			<section>Dynamic Frames
+				<section style="text-align: left;">
+					
+				</section>
+			</section>
+		
 			<script src="dist/reveal.js"></script>
 			<script src="plugin/zoom/zoom.js"></script>
 			<script src="plugin/notes/notes.js"></script>
