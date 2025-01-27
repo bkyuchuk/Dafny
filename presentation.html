@@ -161,7 +161,7 @@
 				</section>
 			</section>
 			<!-- ################################################ Inductive Datatypes ################################################ -->
-			<section>Inductive Datatypes
+			<section data-visibility="hidden">Inductive Datatypes
 				<section style="text-align: left;">
 					<small>
 						<p class="fragment" data-fragment-index="1">In Dafny, a datatype is:</p>
@@ -186,7 +186,7 @@
 				</section>
 			</section>
 			<!-- ################################################ Lemmas & Proofs ################################################ -->
-			<section>Lemmas & Proofs
+			<section data-visibility="hidden">Lemmas & Proofs
 				<section style="text-align: left;">
 					<small>
 						<p class="fragment" data-fragment-index="1">In Dafny, a lemma:</p>
@@ -241,17 +241,48 @@
 						<p class="fragment" style="margin-top: 1rem;" data-fragment-index="2">Sequences are value types
 							and
 							can be sliced like in Python.</p>
-						<p class="fragment" data-fragment-index="3">See <mark style="border-radius: 0.5rem; padding: 0.3rem;">code/arrays.dfy</mark></p>
+						<p class="fragment" data-fragment-index="3">See <mark
+								style="border-radius: 0.5rem; padding: 0.3rem;">code/arrays.dfy</mark></p>
 					</small>
 				</section>
 			</section>
 			<!-- ################################################ Dynamic Frames ################################################ -->
 			<section>Dynamic Frames
 				<section style="text-align: left;">
-					
+					<small>
+						<p class="fragment" data-fragment-index="1">Two essential ingredients for writing specifications
+							and
+							reasoning about objects are
+							<em>invariants</em> of the object structures and <em>frames</em>.
+						</p>
+						<p class="fragment" data-fragment-index="2" style="text-decoration: underline;">Important things
+							to keep in mind:</p>
+						<ul>
+							<li class="fragment" style="margin-top: 1rem;" data-fragment-index="3"><em>Repr</em>:
+								defined as
+								a ghost set of objects denotes the representation state of an
+								object</li>
+							<li class="fragment" style="margin-top: 1rem;" data-fragment-index="4"><em>Valid()</em>:
+								defined
+								as a ghost predicate denotes the object invariant</li>
+							<li class="fragment" style="margin-top: 1rem;" data-fragment-index="5">constructor has two
+								phases and establishes object validity and freshness</li>
+							<li class="fragment" style="margin-top: 1rem;" data-fragment-index="6">Read frames: defined
+								with
+								<em>reads</em> mean that a function or a method has a read
+								dependency on <em>Repr</em>
+							</li>
+							<li class="fragment" style="margin-top: 1rem;" data-fragment-index="7">Write frames: defined
+								with <em>modifies</em> mean that a mutating method changes
+								<em>Repr</em>
+							</li>
+						</ul>
+						<p class="fragment" data-fragment-index="7">See example in <mark
+								style="border-radius: 0.5rem; padding: 0.3rem;">code/coffee-maker.dfy</mark></p>
+					</small>
 				</section>
 			</section>
-		
+
 			<script src="dist/reveal.js"></script>
 			<script src="plugin/zoom/zoom.js"></script>
 			<script src="plugin/notes/notes.js"></script>
