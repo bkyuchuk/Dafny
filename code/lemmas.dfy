@@ -2,7 +2,7 @@ function Reduce(m: nat, x: int): int {
   if m == 0 then x else Reduce(m / 2, x + 1) - m
 }
 
-lemma {:induction false} ReduceUpperBound(m: nat, x: int)
+lemma ReduceUpperBound(m: nat, x: int)
   ensures Reduce(m, x) <= x
 {
   if m == 0 {
@@ -21,7 +21,7 @@ lemma {:induction false} ReduceUpperBound(m: nat, x: int)
   }
 }
 
-lemma {:induction false} ReduceLowerBound(m: nat, x: int)
+lemma ReduceLowerBound(m: nat, x: int)
   ensures x - 2 * m <= Reduce(m, x)
 {
   if m == 0 {

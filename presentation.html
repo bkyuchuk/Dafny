@@ -36,13 +36,11 @@
 				<small>
 					<ol>
 						<li class="fragment fade-up">Why Dafny?</li>
-						<li class="fragment fade-up">Floyd Logic & Building Blocks of Dafny</li>
+						<li class="fragment fade-up">Building Blocks of Dafny</li>
 						<li class="fragment fade-up">Recursion & Termination</li>
-						<li class="fragment fade-up">Inductive Datatypes</li>
-						<li class="fragment fade-up">Lemmas & Proofs</li>
 						<li class="fragment fade-up">Loop invariants</li>
 						<li class="fragment fade-up">Arrays & Searching</li>
-						<li class="fragment fade-up">Objects & Frames</li>
+						<li class="fragment fade-up">Dynamic Frames</li>
 					</ol>
 				</small>
 			</section>
@@ -66,11 +64,6 @@
 										href="https://research.microsoft.com/boogie">Boogie</a> and
 									<a href="https://github.com/z3prover">Z3</a>. The general proof framework is that of
 									Hoare logic
-								</li>
-								<li style="margin-top: 1rem;">From verified programs, the compiler can produce code for
-									a
-									number of different
-									backends: the .NET platform via intermediate C# files, Java, Javascript, Go, and C++
 								</li>
 							</ul>
 						</small>
@@ -120,61 +113,11 @@
 					</div>
 				</section>
 			</section>
-			<!-- ####################### Floyd Logic ####################### -->
-			<section>Floyd Logic
-				<section data-auto-animate>
-					<pre>
-						<code data-id="floyd-decoration" data-line-numbers>
-							method Triple(x: int) returns (r: int) 
-							  requires 0 <= x
-							  ensures r == 3 * x {
-								var y;
-								y := 2 * x;
-								r := x + y;
-							}
-						</code>
-					</pre>
-				</section>
-				<section data-auto-animate>
-					<pre>
-						<code data-id="floyd-decoration" data-line-numbers="11-12|10|9-10|8|7-8|6|5">
-							method Triple(x: int) returns (r: int)
-							  requires 0 <= x
-							  ensures r == 3 * x {
-								[ 0 <= x ==> 3 * x == x + 2 * x ]
-								[ forall y :: 3 * x == x + 2 * x ]
-								var y;
-								[ x + 2 * x == 3 * x ]
-								y := 2 * x;
-								[ x + y == 3 * x ]
-								r := x + y;
-								[ r == 3 * x ]
-							}
-						</code>
-					</pre>
-				</section>
-				<section>
-					<pre><code class="language-javascript">var t := Triple(u + 3);</code></pre>
-					<pre class="fragment fade-in">
-						<code class="language-html" data-trim>
-							var x’, r’;
-							x’ := u + 3;
-							assert 0 <= x'
-							assume r’ == 3 * x';
-							t := r’;
-						</code>
-					</pre>
-					<pre class="fragment fade-in"><code>Q[t := 3 * (u + 3)]</code></pre>
-					<pre class="fragment fade-in">
-						<code data-trim>
-							[ u == 15 ] t := Triple(u + 3) [t == 54]
-						</code>
-					</pre>
-				</section>
-			</section>
 			<!-- ####################### Building Blocks of Dafny ####################### -->
 			<section>
 				<p>Building Blocks of Dafny</p>
+				<span>See examples in <mark
+						style="border-radius: 0.5rem; padding: 0.3rem;">code/blocks.dfy</mark></span>
 			</section>
 			<!-- ####################### Recursion & Termination ####################### -->
 			<section>Recursion & Termination
@@ -207,7 +150,9 @@
 							<li style="margin: 1rem 0 1rem 0;">the relation has no <em>infinite descending chain</em>
 							</li>
 						</ul>
-						Here are the built-in well-founded relations for some of Dafny’s types:
+						See examples in <mark style="border-radius: 0.5rem; padding: 0.3rem;">code/recursion.dfy</mark>.
+						Here are the built-in well-founded relations for
+						some of Dafny’s types:
 					</small>
 					<img src="css/images/dafny-types-decreases.png" style="
 					width: 50rem;
@@ -235,6 +180,8 @@
 								<em>inductive</em>
 							</li>
 						</ul>
+						<p class="fragment" data-fragment-index="6">See examples in <mark
+								style="border-radius: 0.5rem; padding: 0.3rem;">code/datatypes.dfy</mark></p>
 					</small>
 				</section>
 			</section>
@@ -253,10 +200,27 @@
 							<li style="margin-top: 1rem;">is usually called recursively and uses induction as proof
 								technique</li>
 						</ul>
+						<p class="fragment" data-fragment-index="6">See examples in <mark
+								style="border-radius: 0.5rem; padding: 0.3rem;">code/lemmas.dfy</mark></p>
 					</small>
 				</section>
 			</section>
-
+			<!-- ####################### Loop Invariants ####################### -->
+			<section>Loop Invariants
+				<section style="text-align: left;">
+					<small>
+						The specification of a loop consists of two parts:
+						<ul>
+							<li style="margin-top: 1rem;"><em>loop invariant</em>: restricts the state space the loop is
+								allowed to explore</li>
+							<li style="margin-top: 1rem;"><em>loop guard</em>: controls when the loop continues doing
+								steps and when to stop</li>
+						</ul>
+						<p class="fragment" data-fragment-index="6">See examples in <mark
+								style="border-radius: 0.5rem; padding: 0.3rem;">code/loops.dfy</mark></p>
+					</small>
+				</section>
+			</section>
 
 			<script src="dist/reveal.js"></script>
 			<script src="plugin/zoom/zoom.js"></script>
