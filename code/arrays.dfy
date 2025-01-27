@@ -19,6 +19,7 @@ method Sequences() {
   assert greetings[1..2] == ["hola"];
 }
 
+// Important!
 method UpdateElements(a: array<int>)
   requires a.Length == 10
   modifies a
@@ -30,6 +31,7 @@ method UpdateElements(a: array<int>)
   a[7], a[8] := 516, a[8] - 1;
 }
 
+// Important!
 method NewArray() returns (a: array<int>)
   ensures fresh(a) && a.Length == 20
 {
@@ -44,6 +46,7 @@ method Caller() {
   a[8] := 512;
 }
 
+// Important!
 predicate IsZeroArray(a: array<int>, lo: int, hi: int)
   requires 0 <= lo <= hi <= a.Length
   reads a

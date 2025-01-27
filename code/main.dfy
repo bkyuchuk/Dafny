@@ -1,18 +1,10 @@
-include "checksums.dfy"
 include "coffee-maker.dfy"
 
+// Important!
 module Main {
-  import Checksums
   import CoffeeLibrary
 
   method Main() {
-    var checksumGen := new Checksums.ChecksumGenerator();
-    var greeting := "Hello, world!";
-    var bye := "Goodbye!";
-    checksumGen.Append(greeting);
-    checksumGen.Append(bye);
-    print "Checksum of '", greeting, "' and '", bye, "' is: ", checksumGen.Checksum(), "\n";
-
     var coffeeMachine := new CoffeeLibrary.CoffeeMaker();
     //var cappuccino := coffeeMachine.Dispense(false);
     coffeeMachine.Restock();

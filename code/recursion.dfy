@@ -4,6 +4,7 @@ function Fib(n: nat): nat
   if n < 2 then n else Fib(n - 2) + Fib(n - 1)
 }
 
+// Important!
 // |s| = length of a sequence
 function SeqSum(s: seq<int>, lo: int, hi: int): int
   requires 0 <= lo <= hi <= |s|

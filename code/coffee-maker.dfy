@@ -1,15 +1,15 @@
 module CoffeeLibrary {
   class Grinder {
     var hasBeans: bool
-    ghost var Repr: set<object>
+    ghost var Repr: set<object> // Representation state of obj
 
     constructor()
-      ensures Valid() && fresh(Repr) {
+      ensures Valid() && fresh(Repr) { // Guarantee fresh object upon creation
       hasBeans := false;
       Repr := {this};
     }
 
-    ghost predicate Valid()
+    ghost predicate Valid() // Object invariant
       reads this, Repr
       ensures Valid() ==> this in Repr {
       this in Repr && (hasBeans == false || true)
@@ -73,6 +73,7 @@ module CoffeeLibrary {
 
     ghost var Repr: set<object>
 
+    // constituent objects
     constructor()
       ensures Valid() && fresh(Repr) {
       grinder := new Grinder();
