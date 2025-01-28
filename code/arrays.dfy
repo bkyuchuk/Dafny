@@ -62,7 +62,7 @@ ghost predicate IsSorted(a: array<int>)
   forall i, j :: 0 <= i < j < a.Length ==> a[i] <= a[j]
 }
 
-// No time!
+// No time?
 method BinarySearch(a: array<int>, key: int) returns (n: int)
   requires IsSorted(a)
   ensures 0 <= n <= a.Length
