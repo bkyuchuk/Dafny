@@ -54,3 +54,44 @@ predicate IsZeroArray(a: array<int>, lo: int, hi: int)
 {
   lo == hi || (a[lo] == 0 && IsZeroArray(a, lo + 1, hi))
 }
+
+// Important!
+ghost predicate IsSorted(a: array<int>)
+  reads a
+{
+  forall i, j :: 0 <= i < j < a.Length ==> a[i] <= a[j]
+}
+
+// No time!
+method BinarySearch(a: array<int>, key: int) returns (n: int)
+  requires IsSorted(a)
+  ensures 0 <= n <= a.Length
+  ensures forall i :: 0 <= i < n ==> a[i] < key
+  ensures forall i :: n <= i < a.Length ==> key <= a[i]
+{
+  var lo, hi := 0, a.Length;
+  while lo < hi
+    invariant 0 <= lo <= hi <= a.Length
+    invariant forall i :: 0 <= i < lo ==> a[i] < key
+    invariant forall i :: hi <= i < a.Length ==> key <= a[i]
+  {
+    calc {
+      lo;
+    ==
+      (lo + lo) / 2;
+    <=  { assert lo <= hi; }
+      (lo + hi) / 2; // this is mid
+    <  { assert lo < hi; }
+      (hi + hi) / 2;
+    ==
+      hi;
+    }
+    var mid := (lo + hi) / 2;
+    if a[mid] < key {
+      lo := mid + 1;
+    } else {
+      hi := mid;
+    }
+  }
+  n := lo;
+}
