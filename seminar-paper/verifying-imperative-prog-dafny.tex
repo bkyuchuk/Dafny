@@ -13,7 +13,7 @@
 % package for header
 \usepackage[automark]{scrlayer-scrpage}
 \pagestyle{scrheadings}
-\ihead[]{Name of students}
+\ihead[]{Bogdan Kyuchukov}
 \ohead[]{\today}
 \cfoot[]{\pagemark} 
 \setheadsepline[122mm]{0.3mm}
@@ -34,7 +34,7 @@
 
 % name of the course and module
 \date{
-	\large Course: Deductive Software Verification \\
+	\large Ludwig Maximilian University of Munich \\ Course: Deductive Software Verification \\
 	\vspace{0.8cm}
 	\large Lecturer: Prof. Gidon Ernst\\
 	\vspace{1cm}
@@ -46,8 +46,14 @@
 
 \vspace{2cm}
 \begin{abstract}
-	Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-
+	The goal of this work is to show how to formally reason
+	about imperative programming constructs such as
+	assignments, loops, arrays and especially about dynamically allocated objects. To be able to achieve that, basic
+	Dafny constructs will be shown, such as variables, functions and methods. The discussion thereafter will move
+	towards recursion and termination as well as inductive datatypes. Having learned from those chapters,
+	loop invariants and their usage will be explored. Because analyzing objects in the heap is more challenging,
+	searching and modifying arrays will be covered. The final chapter will include a detailed discussion about Dafny's
+	dynamic frames and their significance.
 \end{abstract}
 \newpage
 \tableofcontents
@@ -55,10 +61,21 @@
 
 \section{Introduction} % (fold)
 \label{sec:introduction}
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. \citep{Stanford09} At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-% section introduction (end)
+When software engineers encounter the field of formal methods and verification, this usually happens
+in an academic setting, where proof techniques are learned and done by hand. Moreover, actually taking advantage
+of those methods in practice involves a steep learning curve and lots of time. This unfortunately leads to less
+acceptance of verification techniques in
+an industry where fast time to market is essential. Dafny promises to solve those problems. As a programming
+language designed to support specifications and proofs, it comes with an automated verifier that integrates
+seamlessly into most modern IDEs enabling software engineers to write bug free,
+formally verifiable code at a surprisingly high pace.\\
+\\
+%This work assumes the reader is familiarized with the fundamentals of program-semantics such as Floyd logic and
+%Hoare triples, as they will be needed to explain Dafny more effectively. 
+%weakest
+%precondition $\mathcal{WP}$ and strongest postcondition $\mathcal{SP}$ of a program statement.
 
-\section{Foundations} % (fold)
+\section{Formal Methods} % (fold)
 \label{sec:foundations}
 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 

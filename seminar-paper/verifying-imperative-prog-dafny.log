@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.11.17)  22 FEB 2025 11:20
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.11.17)  23 FEB 2025 01:11
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -731,9 +731,9 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 45.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 52.
+(Font)              <7> on input line 58.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 52.
+(Font)              <5> on input line 58.
  [1
 
 {/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] (./verifying-imperative-prog-dafny.toc)
@@ -749,28 +749,43 @@ Overfull \hbox (2.12361pt too wide) has occurred while \output is active
 Overfull \vbox (12.0pt too high) has occurred while \output is active []
 
  [2]
-LaTeX Font Info:    Trying to load font information for OMS+cmtt on input line 75.
-LaTeX Font Info:    No file OMScmtt.fd. on input line 75.
+Underfull \hbox (badness 10000) in paragraph at lines 64--77
 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 64--77
+
+ []
+
+
+Package natbib Warning: Citation `Dix04' on page 3 undefined on input line 89.
+
+LaTeX Font Info:    Trying to load font information for OMS+cmtt on input line 92.
+LaTeX Font Info:    No file OMScmtt.fd. on input line 92.
 
 LaTeX Font Warning: Font shape `OMS/cmtt/m/n' undefined
 (Font)              using `OMS/cmsy/m/n' instead
-(Font)              for symbol `textbraceleft' on input line 75.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 75--76
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 83--84
-
- []
+(Font)              for symbol `textbraceleft' on input line 92.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 92--93
 
  []
+
+
+Package natbib Warning: Citation `Dix04' on page 3 undefined on input line 94.
+
+
+Package natbib Warning: Citation `Dix04' on page 3 undefined on input line 97.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 100--101
+
+ []
+
+
+Package natbib Warning: Citation `Hall' on page 3 undefined on input line 106.
 
 
 Overfull \hbox (2.12361pt too wide) has occurred while \output is active
@@ -781,6 +796,24 @@ Overfull \hbox (2.12361pt too wide) has occurred while \output is active
 Overfull \vbox (12.0pt too high) has occurred while \output is active []
 
  [3]
+
+Package natbib Warning: Citation `Hall' on page 4 undefined on input line 109.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 109--110
+
+ []
+
+
+Package natbib Warning: Citation `Baddeley:1974ts' on page 4 undefined on input line 111.
+
+
+Package natbib Warning: Citation `Baddeley:1974ts' on page 4 undefined on input line 115.
+
+
+Package natbib Warning: Citation `Dix04' on page 4 undefined on input line 150.
+
+
 Overfull \hbox (2.12361pt too wide) has occurred while \output is active
 []|
  []
@@ -789,6 +822,10 @@ Overfull \hbox (2.12361pt too wide) has occurred while \output is active
 Overfull \vbox (12.0pt too high) has occurred while \output is active []
 
  [4{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
+
+Package natbib Warning: Citation `Baddeley:1974ts' on page 5 undefined on input line 155.
+
+
 Overfull \hbox (2.12361pt too wide) has occurred while \output is active
 []|
  []
@@ -797,16 +834,14 @@ Overfull \hbox (2.12361pt too wide) has occurred while \output is active
 Overfull \vbox (12.0pt too high) has occurred while \output is active []
 
  [5] (./verifying-imperative-prog-dafny.bbl
-Underfull \hbox (badness 7451) in paragraph at lines 28--33
-\OT1/cmr/m/sc/10 Hall\OT1/cmr/m/n/10 , Shane:  \OT1/cmr/m/it/10 How to Cite Page Num-bers in APA For-
- []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 35--40
-\OT1/cmtt/m/n/10 slac . stanford . edu / images / 2009 / colloquium-[]web-[]collide . jpg$[][]\OT1/cmr/m/n/10 .
- []
+Package natbib Warning: Empty `thebibliography' environment on input line 15.
 
 )
+
+Package natbib Warning: There were undefined citations.
+
+
 Overfull \hbox (2.12361pt too wide) has occurred while \output is active
 []|
  []
@@ -824,21 +859,21 @@ L3 programming layer <2024-02-20>
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `verifying-imperative-prog-dafny.out' has not changed.
-(rerunfilecheck)             Checksum: 329BE0D4C08C0E6B2B38FF679F6C5CDD;1471.
+(rerunfilecheck)             Checksum: 69089295ACD875A279202299CA329A5D;1489.
  ) 
 Here is how much of TeX's memory you used:
- 11900 strings out of 474116
- 219443 string characters out of 5743681
+ 11881 strings out of 474116
+ 219159 string characters out of 5743681
  1940187 words of memory out of 5000000
- 34084 multiletter control sequences out of 15000+600000
- 564733 words of font info for 58 fonts, out of 8000000 for 9000
+ 34070 multiletter control sequences out of 15000+600000
+ 564432 words of font info for 57 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 123i,19n,121p,787b,466s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on verifying-imperative-prog-dafny.pdf (6 pages, 217513 bytes).
+ 123i,19n,121p,796b,533s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
+Output written on verifying-imperative-prog-dafny.pdf (6 pages, 200418 bytes).
 PDF statistics:
- 207 PDF objects out of 1000 (max. 8388607)
- 165 compressed objects within 2 object streams
- 23 named destinations out of 1000 (max. 500000)
+ 173 PDF objects out of 1000 (max. 8388607)
+ 133 compressed objects within 2 object streams
+ 19 named destinations out of 1000 (max. 500000)
  81 words of extra memory for PDF output out of 10000 (max. 10000000)
 
