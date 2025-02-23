@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex verifying-imperative-prog-dafny"] 1740269109.63924 "verifying-imperative-prog-dafny.aux" "verifying-imperative-prog-dafny.bbl" "verifying-imperative-prog-dafny" 1740269501.04112 0
-  "./natdin.bst" 1740214180 56466 67bb21ab511019d7862d941a4edead75 ""
-  "./references.bib" 1740242032.68733 1240 6368aaafec7be7333237376770ad760d ""
-  "verifying-imperative-prog-dafny.aux" 1740269499.75863 2374 88fbaafb3f3553a093d49f85a525929e "pdflatex"
+["bibtex verifying-imperative-prog-dafny"] 1740348887.14249 "verifying-imperative-prog-dafny.aux" "verifying-imperative-prog-dafny.bbl" "verifying-imperative-prog-dafny" 1740349207.62951 0
+  "./references.bib" 1740348873.28603 2774 8ad6838d8cc21d582287af7a4ffde829 ""
+  "/usr/local/texlive/2024/texmf-dist/bibtex/bst/base/apalike.bst" 1292289607 24635 604dafcc79f521a11ea73e506e1fbd98 ""
+  "verifying-imperative-prog-dafny.aux" 1740349206.29916 3231 071a8a35ab61c20d9d3b88a35b52e3d8 "pdflatex"
   (generated)
   "verifying-imperative-prog-dafny.bbl"
   "verifying-imperative-prog-dafny.blg"
   (rewritten before read)
-["pdflatex"] 1740269497.82794 "/Users/bogdankyuchukov/Documents/masters/seminar_deduktive_softwareverifikation/dafny-lecture/seminar-paper/verifying-imperative-prog-dafny.tex" "verifying-imperative-prog-dafny.pdf" "verifying-imperative-prog-dafny" 1740269501.04139 0
-  "/Users/bogdankyuchukov/Documents/masters/seminar_deduktive_softwareverifikation/dafny-lecture/seminar-paper/verifying-imperative-prog-dafny.tex" 1740269492.81747 10042 9d0397c17ee8a7436abc1df8cdcdd733 ""
+["pdflatex"] 1740349203.69332 "/Users/bogdankyuchukov/Documents/masters/seminar_deduktive_softwareverifikation/dafny-lecture/seminar-paper/verifying-imperative-prog-dafny.tex" "verifying-imperative-prog-dafny.pdf" "verifying-imperative-prog-dafny" 1740349207.62992 0
+  "/Users/bogdankyuchukov/Documents/masters/seminar_deduktive_softwareverifikation/dafny-lecture/seminar-paper/verifying-imperative-prog-dafny.tex" 1740349202.17878 11750 c33e012be71512b4ffa0f3abb47649c7 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/jknappen/ec/tcrm1000.tfm" 1136768653 1536 e07581a4bb3136ece9eeb4c3ffab8233 ""
@@ -112,14 +112,17 @@
   "/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1731882143.35336 5467645 128b85b7cde5f5edc5cb7f1dd7ff8736 ""
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1731882029 8221434 69284b47ed2445fc6e124e8841fc5f06 ""
   "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
+  "images/dafny-infra.jpg" 1740330915.96804 88569 bf166a2b1ec0bbe7abdc7bb8b7fdfed3 ""
   "natbib.cfg" 1740214180 597 034939155d1d9d03faf9b187e66d06d0 ""
-  "verifying-imperative-prog-dafny.aux" 1740269499.75863 2374 88fbaafb3f3553a093d49f85a525929e "pdflatex"
-  "verifying-imperative-prog-dafny.bbl" 1740269110.54936 447 8fd28d0489bfdd5992abfb8383f8d860 "bibtex verifying-imperative-prog-dafny"
-  "verifying-imperative-prog-dafny.out" 1740269499.76668 1489 69089295acd875a279202299ca329a5d "pdflatex"
-  "verifying-imperative-prog-dafny.tex" 1740269492.81747 10042 9d0397c17ee8a7436abc1df8cdcdd733 ""
-  "verifying-imperative-prog-dafny.toc" 1740269499.76743 794 9a472fa7128c2223fc1941fa62e02487 "pdflatex"
+  "verifying-imperative-prog-dafny.aux" 1740349206.29916 3231 071a8a35ab61c20d9d3b88a35b52e3d8 "pdflatex"
+  "verifying-imperative-prog-dafny.bbl" 1740348887.54463 629 14dbed3b9a9a9436d3c0f5e6c33cec0a "bibtex verifying-imperative-prog-dafny"
+  "verifying-imperative-prog-dafny.lof" 1740349206.30308 154 73e95f5e96844c1de37b8f7325e626b7 "pdflatex"
+  "verifying-imperative-prog-dafny.out" 1740349206.30234 1820 1d33f9405a525760b6573106db2c979d "pdflatex"
+  "verifying-imperative-prog-dafny.tex" 1740349202.17878 11750 c33e012be71512b4ffa0f3abb47649c7 ""
+  "verifying-imperative-prog-dafny.toc" 1740349206.30298 966 46fd2b87e654de93ac3a5a3bd4eeb2b9 "pdflatex"
   (generated)
   "verifying-imperative-prog-dafny.aux"
+  "verifying-imperative-prog-dafny.lof"
   "verifying-imperative-prog-dafny.log"
   "verifying-imperative-prog-dafny.out"
   "verifying-imperative-prog-dafny.pdf"

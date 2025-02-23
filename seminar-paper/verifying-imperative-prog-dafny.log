@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.11.17)  23 FEB 2025 01:11
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.11.17)  23 FEB 2025 23:20
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -749,43 +749,56 @@ Overfull \hbox (2.12361pt too wide) has occurred while \output is active
 Overfull \vbox (12.0pt too high) has occurred while \output is active []
 
  [2]
-Underfull \hbox (badness 10000) in paragraph at lines 64--77
+<images/dafny-infra.jpg, id=91, 227.6505pt x 113.82526pt>
+File: images/dafny-infra.jpg Graphic file (type jpg)
+<use images/dafny-infra.jpg>
+Package pdftex.def Info: images/dafny-infra.jpg  used on input line 85.
+(pdftex.def)             Requested size: 241.49895pt x 120.75317pt.
 
+Overfull \hbox (2.12361pt too wide) has occurred while \output is active
+[]|
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 64--77
+Overfull \vbox (12.0pt too high) has occurred while \output is active []
 
- []
+ [3 <./images/dafny-infra.jpg>]
 
+Package natbib Warning: Citation `Dix04' on page 4 undefined on input line 130.
 
-Package natbib Warning: Citation `Dix04' on page 3 undefined on input line 89.
-
-LaTeX Font Info:    Trying to load font information for OMS+cmtt on input line 92.
-LaTeX Font Info:    No file OMScmtt.fd. on input line 92.
+LaTeX Font Info:    Trying to load font information for OMS+cmtt on input line 133.
+LaTeX Font Info:    No file OMScmtt.fd. on input line 133.
 
 LaTeX Font Warning: Font shape `OMS/cmtt/m/n' undefined
 (Font)              using `OMS/cmsy/m/n' instead
-(Font)              for symbol `textbraceleft' on input line 92.
+(Font)              for symbol `textbraceleft' on input line 133.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 92--93
-
- []
-
-
-Package natbib Warning: Citation `Dix04' on page 3 undefined on input line 94.
-
-
-Package natbib Warning: Citation `Dix04' on page 3 undefined on input line 97.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 100--101
+Underfull \hbox (badness 10000) in paragraph at lines 133--134
 
  []
 
 
-Package natbib Warning: Citation `Hall' on page 3 undefined on input line 106.
+Package natbib Warning: Citation `Dix04' on page 4 undefined on input line 135.
+
+
+Package natbib Warning: Citation `Dix04' on page 4 undefined on input line 138.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 141--142
+
+ []
+
+
+Package natbib Warning: Citation `Hall' on page 4 undefined on input line 147.
+
+
+Package natbib Warning: Citation `Hall' on page 4 undefined on input line 150.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 150--151
+
+ []
 
 
 Overfull \hbox (2.12361pt too wide) has occurred while \output is active
@@ -795,23 +808,15 @@ Overfull \hbox (2.12361pt too wide) has occurred while \output is active
 
 Overfull \vbox (12.0pt too high) has occurred while \output is active []
 
- [3]
+ [4]
 
-Package natbib Warning: Citation `Hall' on page 4 undefined on input line 109.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 109--110
-
- []
+Package natbib Warning: Citation `Baddeley:1974ts' on page 5 undefined on input line 152.
 
 
-Package natbib Warning: Citation `Baddeley:1974ts' on page 4 undefined on input line 111.
+Package natbib Warning: Citation `Baddeley:1974ts' on page 5 undefined on input line 156.
 
 
-Package natbib Warning: Citation `Baddeley:1974ts' on page 4 undefined on input line 115.
-
-
-Package natbib Warning: Citation `Dix04' on page 4 undefined on input line 150.
+Package natbib Warning: Citation `Dix04' on page 5 undefined on input line 191.
 
 
 Overfull \hbox (2.12361pt too wide) has occurred while \output is active
@@ -821,9 +826,9 @@ Overfull \hbox (2.12361pt too wide) has occurred while \output is active
 
 Overfull \vbox (12.0pt too high) has occurred while \output is active []
 
- [4{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
+ [5{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
 
-Package natbib Warning: Citation `Baddeley:1974ts' on page 5 undefined on input line 155.
+Package natbib Warning: Citation `Baddeley:1974ts' on page 6 undefined on input line 196.
 
 
 Overfull \hbox (2.12361pt too wide) has occurred while \output is active
@@ -833,11 +838,11 @@ Overfull \hbox (2.12361pt too wide) has occurred while \output is active
 
 Overfull \vbox (12.0pt too high) has occurred while \output is active []
 
- [5] (./verifying-imperative-prog-dafny.bbl
+ [6] (./verifying-imperative-prog-dafny.lof)
+\tf@lof=\write5
+\openout5 = `verifying-imperative-prog-dafny.lof'.
 
-Package natbib Warning: Empty `thebibliography' environment on input line 15.
-
-)
+ (./verifying-imperative-prog-dafny.bbl)
 
 Package natbib Warning: There were undefined citations.
 
@@ -849,7 +854,7 @@ Overfull \hbox (2.12361pt too wide) has occurred while \output is active
 
 Overfull \vbox (12.0pt too high) has occurred while \output is active []
 
- [6] (./verifying-imperative-prog-dafny.aux)
+ [7] (./verifying-imperative-prog-dafny.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
@@ -859,21 +864,21 @@ L3 programming layer <2024-02-20>
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `verifying-imperative-prog-dafny.out' has not changed.
-(rerunfilecheck)             Checksum: 69089295ACD875A279202299CA329A5D;1489.
+(rerunfilecheck)             Checksum: 1D33F9405A525760B6573106DB2C979D;1820.
  ) 
 Here is how much of TeX's memory you used:
- 11881 strings out of 474116
- 219159 string characters out of 5743681
- 1940187 words of memory out of 5000000
- 34070 multiletter control sequences out of 15000+600000
+ 11919 strings out of 474116
+ 220127 string characters out of 5743681
+ 1939187 words of memory out of 5000000
+ 34096 multiletter control sequences out of 15000+600000
  564432 words of font info for 57 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 123i,19n,121p,796b,533s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 123i,20n,121p,796b,518s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on verifying-imperative-prog-dafny.pdf (6 pages, 200418 bytes).
+Output written on verifying-imperative-prog-dafny.pdf (7 pages, 301696 bytes).
 PDF statistics:
- 173 PDF objects out of 1000 (max. 8388607)
- 133 compressed objects within 2 object streams
- 19 named destinations out of 1000 (max. 500000)
- 81 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 210 PDF objects out of 1000 (max. 8388607)
+ 168 compressed objects within 2 object streams
+ 28 named destinations out of 1000 (max. 500000)
+ 102 words of extra memory for PDF output out of 10000 (max. 10000000)
 

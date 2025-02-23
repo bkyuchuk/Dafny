@@ -49,7 +49,7 @@
 	The goal of this work is to show how to formally reason
 	about imperative programming constructs such as
 	assignments, loops, arrays and especially about dynamically allocated objects. To be able to achieve that, basic
-	Dafny constructs will be shown, such as variables, functions and methods. The discussion thereafter will move
+	Dafny constructs will be shown, such as functions, methods, pre- and postconditions. The discussion thereafter will move
 	towards recursion and termination as well as inductive datatypes. Having learned from those chapters,
 	loop invariants and their usage will be explored. Because analyzing objects in the heap is more challenging,
 	searching and modifying arrays will be covered. The final chapter will include a detailed discussion about Dafny's
@@ -61,23 +61,64 @@
 
 \section{Introduction} % (fold)
 \label{sec:introduction}
+\subsection{Why Dafny?}
 When software engineers encounter the field of formal methods and verification, this usually happens
 in an academic setting, where proof techniques are learned and done by hand. Moreover, actually taking advantage
 of those methods in practice involves a steep learning curve and lots of time. This unfortunately leads to less
 acceptance of verification techniques in
-an industry where fast time to market is essential. Dafny promises to solve those problems. As a programming
+an industry where fast time to market is essential \cite{reid2020makingformalmethodsnormal}. Dafny promises to solve those problems. As a programming
 language designed to support specifications and proofs, it comes with an automated verifier that integrates
-seamlessly into most modern IDEs enabling software engineers to write bug free,
-formally verifiable code at a surprisingly high pace.\\
-\\
+seamlessly into most modern IDEs \footnote{Integrated Development Environments (IDEs)} making rigorous verification part of the software development process,
+thus reducing costly late-stage bugs that may be missed by testing.
+
+\subsection{Dafny's build system}
+The main idea in such verification-aware programming languages is that code is divided into two parts - the
+specification part and the implementation part \cite{leino2023program}. The built-in verifier in Dafny acts as an
+extended type checker and constantly proves that the provided implementation actually meets the behavior stated in
+the specification part of the given function, method or class. This is done by transforming the code into an intermediary
+that a tool called Boogie can understand. The correctness of the Boogie program implies the correctness of the
+Dafny program. Boogie then generates first-order verification rules that are passed to the
+Z3 SMT solver. Any violations of these conditions are passed back as verification errors \cite{Herbert2012}. This
+process is visualized in Figure \ref{fig:build-system}.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\textwidth]{images/dafny-infra.jpg}
+	\caption{The Dafny build system as shown in \cite{Herbert2012}}
+	\label{fig:build-system}
+\end{figure}
+
 %This work assumes the reader is familiarized with the fundamentals of program-semantics such as Floyd logic and
 %Hoare triples, as they will be needed to explain Dafny more effectively. 
-%weakest
-%precondition $\mathcal{WP}$ and strongest postcondition $\mathcal{SP}$ of a program statement.
-
-\section{Formal Methods} % (fold)
+%weakest precondition $\mathcal{WP}$ and strongest postcondition $\mathcal{SP}$ of a program statement.
+% Building blocks of Dafny
+% Recursion and termination
+% Inductive datatypes
+% Searching & modifying arrays
+% Dynamic Frames
+\section{Building Blocks of Dafny} % (fold)
 \label{sec:foundations}
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
+et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
+consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+no sea takimata sanctus est Lorem ipsum dolor sit amet.
+\begin{verbatim}
+	method Sequences() {
+		var greetings := ["hey", "hola", "tjena"];
+	  
+		assert [1, 5, 12] + [22, 35] == [1, 5, 12, 22, 35];
+	  
+		var p := [1, 5, 12, 22, 35];
+		assert p[2..4] == [12, 22];
+		assert p[..2] == [1, 5];
+		assert p[2..] == [12, 22, 35];
+	  
+		assert greetings[..1] == ["hey"];
+		assert greetings[1..2] == ["hola"];
+	}
+\end{verbatim}
+
 
 \section{Section about quotations} % (fold)
 \label{sec:section_about_quotations}
@@ -163,7 +204,8 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
 
 \newpage
 
-\bibliographystyle{natdin}
-\bibliography{references} % expects file "references.bib"
+\listoffigures
+\bibliographystyle{apalike}
+\bibliography{references}
 \addcontentsline{toc}{section}{References}
 \end{document}
