@@ -94,7 +94,8 @@ an industry where fast time to market is essential \cite{reid2020makingformalmet
 language designed to support specifications and proofs, it comes with an automated verifier that integrates
 seamlessly into most modern IDEs \footnote{Integrated Development Environments (IDEs)} making rigorous verification part of the software development process,
 thus reducing costly late-stage bugs that may be missed by testing. The language was designed by Rustan Leino in
-2009 and it's current version at the time of this writing is 4.9.0 from 31. October 2024.
+2009 and it's current version at the time of this writing is 4.9.0 from 31. October 2024. Dafny is heavily
+used at Amazon Web Services to develop critical components of their access management, storage, and cryptography infrastructures \cite{Chakarov2022}.
 
 \subsection{Dafny's build system}
 The main idea in such verification-aware programming languages is that code is divided into two parts - the
@@ -112,7 +113,6 @@ process is visualized in Figure \ref{fig:build-system}.
 	\label{fig:build-system}
 \end{figure}
 %weakest precondition $\mathcal{WP}$ and strongest postcondition $\mathcal{SP}$ of a program statement.
-% Recursion and termination
 % Inductive datatypes
 % Searching & modifying arrays
 % Dynamic Frames
@@ -120,6 +120,7 @@ process is visualized in Figure \ref{fig:build-system}.
 \label{sec:foundations}
 This work assumes the reader is familiarized with the fundamentals of program-semantics such as Floyd logic and
 Hoare triples, as they build the reasoning framework of Dafny and help to understand it more effectively.
+
 \subsection{Methods}
 As in other programming languages, a \textit{method} is a block of code that prescribes some behavior. For instance,
 Listing \ref{lst:dafnymethod} shows the declaration of a method called \texttt{Triple}.
@@ -138,6 +139,7 @@ The body of a method is a list of statements that give the method's implementati
 methods can have any number of in- and out-parameters. Inside the method, the out-parameters are like local
 variables and can be assigned and read. When the method ends, whatever values were assigned to the out-parameters
 will be returned to the caller. The in-parameters however cannot be re-assigned \cite{leino2023program}.
+
 \subsection{Functions}
 Functions in Dafny are very mathematical in nature, because they are deterministic. Any two invocations of a
 function with the same arguments will result in the same value. Listing \ref{lst:dafnyfunction} shows how a simple
@@ -154,49 +156,26 @@ Another important difference between functions and methods is, that functions ar
 that their implementation is directly visible to the caller. That's the reason why functions can also be used
 to describe pre- and postconditions like on line 2 in Listing \ref{lst:dafnymethod}. Methods on the other hand are
 \textit{opaque}, so callers fully rely on the postcondition to reason about their return values.
+\subsection{Ghost constructs}
+Sometimes when reasoning about a program more information is needed than what the compiler has at runtime.
+A declaration, variable, statement, etc., that is used only for specification purposes is called a \textit{ghost}.
+The verifier takes all ghosts into account, whereas the compiler erases all ghosts when it produces executable code.
+Other ghost constructs include pre- and postconditions (declared by \textbf{requires} and \textbf{ensures} clauses).
+They are used solely to specify the behavior of the program and establish a contract between callers and implementations \cite{leino2023program}.
+\begin{lstlisting}[style=dafnystyle, caption={Invalid assignment to ghost.}, label={lst:dafnyghost}]
+method InvalidAssignment() returns (y: int) {
+  ghost var x := 10;
+  y := 2 * x; // cannot assign to compiled variable using a ghost
+}
+\end{lstlisting}
+To make sure ghost constructs can be successfully deleted after compilation, Dafny makes sure the compiled code
+doesn't rely on any ghost constructs. Listing \ref{lst:dafnyghost} demonstrates a violation of this rule, which
+results in a verification error.
 
-\section{Section about quotations} % (fold)
-\label{sec:section_about_quotations}
-
-In this section, an example for a literal quotation is given.
-
-\begin{quotation}
-	\emph{``A persona is a rich picture of an imaginary person who represents your core user group.''}
-	\citep{Dix04}
-\end{quotation}
-
-Sometimes you might want to make use of the authors name within the text. Before, we used the command \texttt{citep\{\}}, which creates the brackets around author name and year. You can also use the \texttt{cite} command like this: \\
-
-\cite{Dix04} defined the concept of persona as follows:
-\begin{quotation}
-	\emph{``A persona is a rich picture of an imaginary person who represents your core user group.''}
-	\citep{Dix04}
-\end{quotation}
-
-You may notice, that this increases the readability of the text. \\
-
-According to APA format\footnote{ American Psychological Association (APA)} there are some rules, when and how to include page numbers, when referring to literature.
-
-\begin{quotation}
-	\emph{``Include page numbers for any citations in the text of your paper that include direct quotations or refer to a specific part of the work you are referencing. Direct quotations must include a page number as part of the citation. The quoted material should be followed by a citation in parentheses that gives the author's name, the year in which the work was published, and the page number from which the quoted material appears.''}
-	\citep{Hall}
-\end{quotation}
-
-Check out the example and recommendations of \cite{Hall} on \url{http://www.ehow.com/how_5689799_cite-numbers-apa-format.html}. In \LaTeX you can include the pages very easy. For example: \\
-
-\citet[p. 86]{Baddeley:1974ts} stated:
-
-\begin{quotation}
-	\emph{``We hope that our preliminary attempts to begin answering the question will convince the reader, not necessarily that our views are correct, but that the question was and is well worth asking''}
-	\citep[p. 86]{Baddeley:1974ts}
-\end{quotation}
-
-Note that in the first reference, we used \texttt{citet[]\{\}} in order to have brackets just around year and page number; later we used \texttt{citep[]\{\}}.
-
-% section section_about_quotations (end)
+\section{Recursion and termination}
 
 
-\section{Section about references within the document} % (fold)
+\section{Section about references within the document}
 \label{sec:section_about_references_within_the_document}
 
 If you want to refer to you own chapters, figures, tables or the like, you can make use of the \texttt{ref\{\}} command, for example:

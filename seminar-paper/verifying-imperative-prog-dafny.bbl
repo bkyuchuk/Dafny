@@ -1,5 +1,9 @@
 \begin{thebibliography}{}
 
+\bibitem[Chakarov et~al., 2022]{Chakarov2022}
+Chakarov, A., Fedchin, A., Rakamaric, Z., and Rungta, N. (2022).
+\newblock Better counterexamples for dafny.
+
 \bibitem[Herbert et~al., 2012]{Herbert2012}
 Herbert, L., Leino, K. R.~M., and Quaresma, J. (2012).
 \newblock {\em Using Dafny, an Automatic Program Verifier}, pages 156--181.
