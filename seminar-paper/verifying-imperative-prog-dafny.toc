@@ -7,10 +7,12 @@
 \contentsline {subsection}{\numberline {2.2}Functions}{4}{subsection.2.2}%
 \contentsline {subsection}{\numberline {2.3}Ghost constructs}{5}{subsection.2.3}%
 \contentsline {section}{\numberline {3}Recursion and termination}{5}{section.3}%
-\contentsline {section}{\numberline {4}Section about references within the document}{5}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Subsection within Foundations}{5}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Another subsection within Foundations}{5}{subsection.4.2}%
+\contentsline {subsection}{\numberline {3.1}The decreases clause}{5}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Well-founded relations}{5}{subsection.3.2}%
+\contentsline {section}{\numberline {4}Inductive datatypes}{6}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Subsection within Foundations}{6}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Another subsection within Foundations}{6}{subsection.4.2}%
 \contentsline {section}{\numberline {5}Methodology}{6}{section.5}%
-\contentsline {section}{\numberline {6}Results}{6}{section.6}%
-\contentsline {section}{\numberline {7}Conclusion}{6}{section.7}%
-\contentsline {section}{References}{7}{section*.4}%
+\contentsline {section}{\numberline {6}Results}{7}{section.6}%
+\contentsline {section}{\numberline {7}Conclusion}{7}{section.7}%
+\contentsline {section}{References}{8}{section*.4}%

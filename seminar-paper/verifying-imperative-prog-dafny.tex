@@ -12,8 +12,8 @@
 \hypersetup{colorlinks=true,citecolor=black,filecolor=black,linkcolor=black,urlcolor=black}
 \lstdefinelanguage{Dafny}{
   morekeywords={method, function, var, const, type, ensures, requires, modifies, assert, 
-  assume, if, else, while, new, class, datatype, trait, extends, ghost, reads, 
-  writes, lemma, forall, exists, match, case, calc, returns},
+  assume, if, then, else, while, new, class, datatype, trait, extends, ghost, reads, 
+  writes, lemma, forall, exists, match, case, calc, returns, decreases},
   sensitive=true,
   morecomment=[l]{//},      % Single-line comments
   morecomment=[s]{/*}{*/},  % Multi-line comments
@@ -113,7 +113,7 @@ process is visualized in Figure \ref{fig:build-system}.
 	\label{fig:build-system}
 \end{figure}
 %weakest precondition $\mathcal{WP}$ and strongest postcondition $\mathcal{SP}$ of a program statement.
-% Inductive datatypes
+% Loop invariants
 % Searching & modifying arrays
 % Dynamic Frames
 \section{Building Blocks of Dafny}
@@ -154,8 +154,8 @@ Whereas a method is declared to have some number of out-parameters, a function i
 and while a method body is a statement, the body of a function is an expression \cite{leino2023program}.
 Another important difference between functions and methods is, that functions are \textit{transparent}. This means
 that their implementation is directly visible to the caller. That's the reason why functions can also be used
-to describe pre- and postconditions like on line 2 in Listing \ref{lst:dafnymethod}. Methods on the other hand are
-\textit{opaque}, so callers fully rely on the postcondition to reason about their return values.
+to describe pre- and postconditions like the precondition on line 2 in Listing \ref{lst:dafnyfunction}.
+Methods on the other hand are \textit{opaque}, so callers fully rely on the postcondition to reason about their return values.
 \subsection{Ghost constructs}
 Sometimes when reasoning about a program more information is needed than what the compiler has at runtime.
 A declaration, variable, statement, etc., that is used only for specification purposes is called a \textit{ghost}.
@@ -173,9 +173,41 @@ doesn't rely on any ghost constructs. Listing \ref{lst:dafnyghost} demonstrates 
 results in a verification error.
 
 \section{Recursion and termination}
+A recursive function is one that calls itself directly or indirectly. To be able to terminate, all recursive
+functions need a base case - a condition where the function stops calling itself and returns a result. An example
+is shown with a function called \texttt{SeqSum} in Listing \ref{lst:dafnyrec}, which computes the sum of all
+integers in a sequence. On line 4, if the base case isn't met, the function invokes itself with an incremented value for lo.
+\begin{lstlisting}[style=dafnystyle, caption={A function computing the sum of all integers in a sequence recursively.}, label={lst:dafnyrec}]
+function SeqSum(s: seq<int>, lo: int, hi: int): int
+  requires 0 <= lo <= hi <= |s|
+  decreases hi - lo {
+  if lo == hi then 0 else s[lo] + SeqSum(s, lo + 1, hi)
+}
+\end{lstlisting}
+\subsection{The decreases clause}
+%In more complicated cases it can actually be quite challenging to find 
+Dafny can prove termination by using the \textbf{decreases} clause. If we can label each function invocation with
+a natural number and make sure that successive invocations strictly decrease that label, then it follows
+that at run time the recursive calls can only execute a finite number of times, and that is all the information
+needed to prove that the recursion eventually terminates \cite{Herbert2012}. As shown on line 3 in Listing
+\ref{lst:dafnyrec}, the label of each invocation of \texttt{SeqSum} decreases gradually, because with each invocation
+the difference between hi and lo is smaller. When it reaches zero, the recursion terminates.
+\subsection{Well-founded relations}
+Termination metrics are not restricted to natural numbers.
+Termination can also be proven when two labels, which represent successive recursive invocations, are in a relation
+that is \textit{well-founded} \cite{leino2023program}. This relation, denoted as $a \succ b$, signifies that a
+reduces to b. For it to be \textit{well-founded}, the following three conditions must be true:
+\begin{itemize}
+	\item $ \succ $ is \textit{reflexive}: The relation never relates an element to itself. $a \succ a$ never holds.
+	\item $ \succ $ is \textit{transitive}: Whenever $a \succ b$ and $b \succ c$ hold, then so does $a \succ c$.
+	\item $ \succ $ satisfies the \textit{descending chain condition}: the relation has no \textit{infinite descending chain}.
+\end{itemize}
+From these conditions it follows that a well-founded relation is a strict partial order that additionally
+satisfies the descending chain condition. Dafny pre-defines $ \succ $ for each type, and in some cases also
+for values between different types (but in most cases, values from different types are not related in
+this partial order) \cite{leino2023program}.
 
-
-\section{Section about references within the document}
+\section{Inductive datatypes}
 \label{sec:section_about_references_within_the_document}
 
 If you want to refer to you own chapters, figures, tables or the like, you can make use of the \texttt{ref\{\}} command, for example:
