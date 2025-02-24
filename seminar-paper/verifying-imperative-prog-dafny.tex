@@ -3,10 +3,37 @@
 \usepackage[utf8x]{inputenc}
 % package for including graphics with figure-environment
 \usepackage{graphicx}
+% package for code blocks
+\usepackage{listings}
+% package for coloring code
+\usepackage{xcolor}
 \usepackage{hyperref}
 % colors for hyperlinks
-% colored borders (false) colored text (true)
 \hypersetup{colorlinks=true,citecolor=black,filecolor=black,linkcolor=black,urlcolor=black}
+\lstdefinelanguage{Dafny}{
+  morekeywords={method, function, var, const, type, ensures, requires, modifies, assert, 
+  assume, if, else, while, new, class, datatype, trait, extends, ghost, reads, 
+  writes, lemma, forall, exists, match, case, calc, returns},
+  sensitive=true,
+  morecomment=[l]{//},      % Single-line comments
+  morecomment=[s]{/*}{*/},  % Multi-line comments
+  morestring=[b]{"}         % Strings in double quotes
+}
+% Define Dafny listing style
+\lstdefinestyle{dafnystyle}{
+  language=Dafny,
+  basicstyle=\ttfamily\footnotesize,
+  keywordstyle=\color{blue}\bfseries,
+  commentstyle=\color{gray}\itshape,
+  stringstyle=\color{red},
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  stepnumber=1,
+  frame=single,             % Adds a border around the code block
+  breaklines=true,          % Allows line breaking
+  captionpos=b              % Caption position (bottom)
+}
+
 
 % package for bibliography
 \usepackage[authoryear,round]{natbib}
@@ -24,9 +51,6 @@
 }
 
 \vspace{1cm}
-
-% if you are the only author, you might use the following
-% \author{Name of student}	
 
 % Insert here your name and correct mail address
 \author{\Large \href{mailto:B.Kyuchukov@campus.lmu.de}{Bogdan Kyuchukov}
@@ -69,7 +93,8 @@ acceptance of verification techniques in
 an industry where fast time to market is essential \cite{reid2020makingformalmethodsnormal}. Dafny promises to solve those problems. As a programming
 language designed to support specifications and proofs, it comes with an automated verifier that integrates
 seamlessly into most modern IDEs \footnote{Integrated Development Environments (IDEs)} making rigorous verification part of the software development process,
-thus reducing costly late-stage bugs that may be missed by testing.
+thus reducing costly late-stage bugs that may be missed by testing. The language was designed by Rustan Leino in
+2009 and it's current version at the time of this writing is 4.9.0 from 31. October 2024.
 
 \subsection{Dafny's build system}
 The main idea in such verification-aware programming languages is that code is divided into two parts - the
@@ -82,43 +107,53 @@ Z3 SMT solver. Any violations of these conditions are passed back as verificatio
 process is visualized in Figure \ref{fig:build-system}.
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.7\textwidth]{images/dafny-infra.jpg}
+	\includegraphics[width=0.80\textwidth]{images/dafny-infra.jpg}
 	\caption{The Dafny build system as shown in \cite{Herbert2012}}
 	\label{fig:build-system}
 \end{figure}
-
-%This work assumes the reader is familiarized with the fundamentals of program-semantics such as Floyd logic and
-%Hoare triples, as they will be needed to explain Dafny more effectively. 
 %weakest precondition $\mathcal{WP}$ and strongest postcondition $\mathcal{SP}$ of a program statement.
-% Building blocks of Dafny
 % Recursion and termination
 % Inductive datatypes
 % Searching & modifying arrays
 % Dynamic Frames
-\section{Building Blocks of Dafny} % (fold)
+\section{Building Blocks of Dafny}
 \label{sec:foundations}
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
-et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
-Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
-consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-no sea takimata sanctus est Lorem ipsum dolor sit amet.
-\begin{verbatim}
-	method Sequences() {
-		var greetings := ["hey", "hola", "tjena"];
-	  
-		assert [1, 5, 12] + [22, 35] == [1, 5, 12, 22, 35];
-	  
-		var p := [1, 5, 12, 22, 35];
-		assert p[2..4] == [12, 22];
-		assert p[..2] == [1, 5];
-		assert p[2..] == [12, 22, 35];
-	  
-		assert greetings[..1] == ["hey"];
-		assert greetings[1..2] == ["hola"];
-	}
-\end{verbatim}
-
+This work assumes the reader is familiarized with the fundamentals of program-semantics such as Floyd logic and
+Hoare triples, as they build the reasoning framework of Dafny and help to understand it more effectively.
+\subsection{Methods}
+As in other programming languages, a \textit{method} is a block of code that prescribes some behavior. For instance,
+Listing \ref{lst:dafnymethod} shows the declaration of a method called \texttt{Triple}.
+\begin{lstlisting}[style=dafnystyle, caption={A simple method in Dafny.}, label={lst:dafnymethod}]
+method Triple(x: int) returns (r: int)
+ ensures Average(x) == 3 * x {
+  var y := 3 * x;
+  r := x + y;
+}
+\end{lstlisting}
+This method takes an \textit{in-parameter} x of type integer and returns an \textit{out-parameter} r, also
+of type integer. The \textbf{ensures} keyword is used to specify the method's \textit{postcondition}. A postcondition expresses a property
+that must hold after every invocation of the method through all possible return points.
+Postconditions are part of the method's specification and appear before the body block \cite{Herbert2012}.
+The body of a method is a list of statements that give the method's implementation. In Dafny,
+methods can have any number of in- and out-parameters. Inside the method, the out-parameters are like local
+variables and can be assigned and read. When the method ends, whatever values were assigned to the out-parameters
+will be returned to the caller. The in-parameters however cannot be re-assigned \cite{leino2023program}.
+\subsection{Functions}
+Functions in Dafny are very mathematical in nature, because they are deterministic. Any two invocations of a
+function with the same arguments will result in the same value. Listing \ref{lst:dafnyfunction} shows how a simple
+function named \texttt{Average} looks like.
+\begin{lstlisting}[style=dafnystyle, caption={A simple function in Dafny.}, label={lst:dafnyfunction}]
+function Average(a: int, b: int): int 
+ requires 0 <= a && 0 <= b {
+  (a + b) / 2
+}
+\end{lstlisting}
+Whereas a method is declared to have some number of out-parameters, a function instead declares a result type,
+and while a method body is a statement, the body of a function is an expression \cite{leino2023program}.
+Another important difference between functions and methods is, that functions are \textit{transparent}. This means
+that their implementation is directly visible to the caller. That's the reason why functions can also be used
+to describe pre- and postconditions like on line 2 in Listing \ref{lst:dafnymethod}. Methods on the other hand are
+\textit{opaque}, so callers fully rely on the postcondition to reason about their return values.
 
 \section{Section about quotations} % (fold)
 \label{sec:section_about_quotations}
@@ -205,6 +240,7 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
 \newpage
 
 \listoffigures
+\lstlistoflistings
 \bibliographystyle{apalike}
 \bibliography{references}
 \addcontentsline{toc}{section}{References}

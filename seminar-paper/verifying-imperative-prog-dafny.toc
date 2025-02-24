@@ -2,12 +2,14 @@
 \contentsline {section}{\numberline {1}Introduction}{3}{section.1}%
 \contentsline {subsection}{\numberline {1.1}Why Dafny?}{3}{subsection.1.1}%
 \contentsline {subsection}{\numberline {1.2}Dafny's build system}{3}{subsection.1.2}%
-\contentsline {section}{\numberline {2}Building Blocks of Dafny}{3}{section.2}%
-\contentsline {section}{\numberline {3}Section about quotations}{4}{section.3}%
+\contentsline {section}{\numberline {2}Building Blocks of Dafny}{4}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Methods}{4}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Functions}{4}{subsection.2.2}%
+\contentsline {section}{\numberline {3}Section about quotations}{5}{section.3}%
 \contentsline {section}{\numberline {4}Section about references within the document}{5}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Subsection within Foundations}{5}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Another subsection within Foundations}{5}{subsection.4.2}%
-\contentsline {section}{\numberline {5}Methodology}{5}{section.5}%
+\contentsline {subsection}{\numberline {4.1}Subsection within Foundations}{6}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Another subsection within Foundations}{6}{subsection.4.2}%
+\contentsline {section}{\numberline {5}Methodology}{6}{section.5}%
 \contentsline {section}{\numberline {6}Results}{6}{section.6}%
 \contentsline {section}{\numberline {7}Conclusion}{6}{section.7}%
-\contentsline {section}{References}{7}{section*.3}%
+\contentsline {section}{References}{8}{section*.4}%
