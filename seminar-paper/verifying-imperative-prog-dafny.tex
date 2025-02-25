@@ -11,9 +11,9 @@
 % colors for hyperlinks
 \hypersetup{colorlinks=true,citecolor=black,filecolor=black,linkcolor=black,urlcolor=black}
 \lstdefinelanguage{Dafny}{
-  morekeywords={method, function, var, const, type, ensures, requires, modifies, assert, 
+  morekeywords={method, function, predicate, var, const, type, ensures, requires, modifies, assert, 
   assume, if, then, else, while, new, class, datatype, trait, extends, ghost, reads, 
-  writes, lemma, forall, exists, match, case, calc, returns, decreases},
+  writes, lemma, forall, exists, match, case, calc, returns, decreases, false, true},
   sensitive=true,
   morecomment=[l]{//},      % Single-line comments
   morecomment=[s]{/*}{*/},  % Multi-line comments
@@ -72,7 +72,7 @@
 \begin{abstract}
 	The goal of this work is to show how to formally reason
 	about imperative programming constructs such as
-	assignments, loops, arrays and especially about dynamically allocated objects. To be able to achieve that, basic
+	loops, arrays and dynamically allocated objects. To be able to achieve that, basic
 	Dafny constructs will be shown, such as functions, methods, pre- and postconditions. The discussion thereafter will move
 	towards recursion and termination as well as inductive datatypes. Having learned from those chapters,
 	loop invariants and their usage will be explored. Because analyzing objects in the heap is more challenging,
@@ -112,8 +112,6 @@ process is visualized in Figure \ref{fig:build-system}.
 	\caption{The Dafny build system as shown in \cite{Herbert2012}}
 	\label{fig:build-system}
 \end{figure}
-%weakest precondition $\mathcal{WP}$ and strongest postcondition $\mathcal{SP}$ of a program statement.
-% Loop invariants
 % Searching & modifying arrays
 % Dynamic Frames
 \section{Building Blocks of Dafny}
@@ -203,39 +201,69 @@ reduces to b. For it to be \textit{well-founded}, the following three conditions
 	\item $ \succ $ satisfies the \textit{descending chain condition}: the relation has no \textit{infinite descending chain}.
 \end{itemize}
 From these conditions it follows that a well-founded relation is a strict partial order that additionally
-satisfies the descending chain condition. Dafny pre-defines $ \succ $ for each type, and in some cases also
+satisfies the descending chain condition. Dafny pre-defines $ \succ $ for each data type, and in some cases also
 for values between different types (but in most cases, values from different types are not related in
 this partial order) \cite{leino2023program}.
 
 \section{Inductive datatypes}
-\label{sec:section_about_references_within_the_document}
+In order to accomplish meaningful tasks, programs need to define their own data structures. A useful way to do that
+is to use \textit{datatypes}. They define what \textit{variants} data can have and what \textit{payload} each variant
+carries. In contrast to classes, which describe mutable \textit{state}, datatypes describe immutable \textit{values}
+\cite{leino2023program}. Datatypes are often defined recursively. That is, values can be built up from simple
+variants or from variants that contain other datatypes. For this reason, they are known as \textit{inductive datatypes}
+\cite{leino2023program}.
+\begin{lstlisting}[style=dafnystyle, caption={A simple and an inductive datatype.}, label={lst:dafnydatatype}]
+// enumeration
+datatype Color = White | Yellow | Blue | Red
 
-If you want to refer to you own chapters, figures, tables or the like, you can make use of the \texttt{ref\{\}} command, for example:
-\begin{itemize}
-	\item section~\ref{sec:section_about_quotations} on page \pageref{sec:section_about_quotations}
-\end{itemize}
+// inductive datatype, parameterized
+datatype Tree<T> = Leaf(data: T) | 
+		Node(left: Tree<T>, right: Tree<T>)
+\end{lstlisting}
+The type \texttt{Tree<T>} shown in Listing \ref{lst:dafnydatatype} can be parameterized with the type of its payload,
+that is, the data stored in the tree. One can also define functions on datatypes.
+\begin{lstlisting}[style=dafnystyle, caption={A function defined on a datatype.}, label={lst:dafnydatafun}]
+function Size<T>(t: Tree<T>): nat {
+  match t
+  case Leaf(_) => 1
+  case Node(left, right) => Size(left) + Size(right)
+}
+\end{lstlisting}
+Listing \ref{lst:dafnydatafun} shows a function \texttt{Size}, parameterized by a type \texttt{T} and a value t of type
+\texttt{Tree<T>}, that returns the number of leaf nodes in t. When calling a function, the type arguments can
+usually be inferred. If so, as seen on line 4 in Listing \ref{lst:dafnydatafun}, we can omit them
+(along with the angle brackets) \cite{leino2023program}.
+\subsection{Discriminators and destructors}
+Very often when working with datatypes, there is a need to know the variant of the datatype value. That is, to know
+which constructor was used to create the value. One could write a function like the one shown in Listing \ref{lst:dafnydatapred}
+that determines this.
+\begin{lstlisting}[style=dafnystyle, caption={A predicate checking if the argument t is a Node.}, label={lst:dafnydatapred}]
+predicate IsNode(t: Tree<T>) {
+  match t
+  case Leaf(_) => false
+  case Node(_, _) => true
+}
+\end{lstlisting}
+Because this is such a common operation, Dafny pre-defines such a \textit{descriminator} for each constructor.
+The name of the discriminator is the name of the constructor followed by a question mark as shown on line 2
+in Listing \ref{lst:dafnydatadiscr}.
+\begin{lstlisting}[style=dafnystyle, caption={A predicate checking if the argument t is a Node.}, label={lst:dafnydatadiscr}]
+function GetLeft(t: Tree<T>): Tree<T>
+ requires t.Node? {
+  match t
+  case Node(left, _) => left
+}
+\end{lstlisting}
+The discriminators are \textit{members} of the type, which means they are accessed by following an expression with a dot
+and the name of the member \cite{leino2023program}. The precondition of \texttt{GetLeft} says the function can only be
+applied to a tree of the \texttt{Node} variant. This means that the \texttt{match} expression only needs to consider
+one case. Because \texttt{GetLeft} is also a common operation, Dafny provides a convenient way to declare such a
+\textit{destructor} for each parameter of the constructor. This is done by simply naming the parameter \cite{leino2023program}.
+Line 6 in Listing \ref{lst:dafnydatatype} demonstrates this with the parameters \texttt{left} and \texttt{right}.
+Because destructors are also members of the type, they can be accessed the same way as discriminators.
 
+\section{Loop invariants}
 
-
-% section section_about_references_within_the_document (end)
-
-\subsection{Subsection within Foundations} % (fold)
-\label{sub:subsection_within_foundations}
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-% subsection subsection_within_foundations (end)
-
-\subsection{Another subsection within Foundations} % (fold)
-\label{sub:another_subsection_within_foundations}
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-% subsection another_subsection_within_foundations (end)
-
-
-% section foundations (end)
-
-\section{Methodology} % (fold)
-\label{sec:methodology}
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua \citep{Dix04}. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-% section methodology (end)
 
 \section{Results} % (fold)
 \label{sec:results}

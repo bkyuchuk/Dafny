@@ -10,9 +10,8 @@
 \contentsline {subsection}{\numberline {3.1}The decreases clause}{5}{subsection.3.1}%
 \contentsline {subsection}{\numberline {3.2}Well-founded relations}{5}{subsection.3.2}%
 \contentsline {section}{\numberline {4}Inductive datatypes}{6}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Subsection within Foundations}{6}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Another subsection within Foundations}{6}{subsection.4.2}%
-\contentsline {section}{\numberline {5}Methodology}{6}{section.5}%
+\contentsline {subsection}{\numberline {4.1}Discriminators and destructors}{7}{subsection.4.1}%
+\contentsline {section}{\numberline {5}Loop invariants}{7}{section.5}%
 \contentsline {section}{\numberline {6}Results}{7}{section.6}%
-\contentsline {section}{\numberline {7}Conclusion}{7}{section.7}%
-\contentsline {section}{References}{8}{section*.4}%
+\contentsline {section}{\numberline {7}Conclusion}{8}{section.7}%
+\contentsline {section}{References}{9}{section*.4}%
