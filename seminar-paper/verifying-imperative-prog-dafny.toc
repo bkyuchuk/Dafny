@@ -12,6 +12,11 @@
 \contentsline {section}{\numberline {4}Inductive datatypes}{6}{section.4}%
 \contentsline {subsection}{\numberline {4.1}Discriminators and destructors}{7}{subsection.4.1}%
 \contentsline {section}{\numberline {5}Loop invariants}{7}{section.5}%
-\contentsline {section}{\numberline {6}Results}{7}{section.6}%
-\contentsline {section}{\numberline {7}Conclusion}{8}{section.7}%
-\contentsline {section}{References}{9}{section*.4}%
+\contentsline {subsection}{\numberline {5.1}Binary search}{8}{subsection.5.1}%
+\contentsline {subsubsection}{\numberline {5.1.1}Precondition}{8}{subsubsection.5.1.1}%
+\contentsline {subsubsection}{\numberline {5.1.2}Postconditions}{8}{subsubsection.5.1.2}%
+\contentsline {subsubsection}{\numberline {5.1.3}Missing loop invariants}{8}{subsubsection.5.1.3}%
+\contentsline {subsubsection}{\numberline {5.1.4}Adding loop invariants}{9}{subsubsection.5.1.4}%
+\contentsline {section}{\numberline {6}Arrays and simple frames}{10}{section.6}%
+\contentsline {section}{\numberline {7}Classes and dynamic frames}{10}{section.7}%
+\contentsline {section}{References}{11}{section*.4}%

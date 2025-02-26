@@ -3,12 +3,11 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: verifying-imperative-prog-dafny.aux
 The style file: apalike.bst
 Database file #1: references.bib
-Warning--I didn't find a database entry for "Baddeley:1974ts"
 Warning--empty journal in Chakarov2022
 Warning--can't use both author and editor fields in Herbert2012
 You've used 4 entries,
             1935 wiz_defined-function locations,
-            497 strings with 4500 characters,
+            495 strings with 4470 characters,
 and the built_in function-call counts, 1586 in all, are:
 = -- 146
 > -- 81
@@ -47,4 +46,4 @@ warning$ -- 2
 while$ -- 11
 width$ -- 0
 write$ -- 48
-(There were 3 warnings)
+(There were 2 warnings)

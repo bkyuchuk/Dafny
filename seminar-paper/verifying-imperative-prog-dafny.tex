@@ -12,7 +12,7 @@
 \hypersetup{colorlinks=true,citecolor=black,filecolor=black,linkcolor=black,urlcolor=black}
 \lstdefinelanguage{Dafny}{
   morekeywords={method, function, predicate, var, const, type, ensures, requires, modifies, assert, 
-  assume, if, then, else, while, new, class, datatype, trait, extends, ghost, reads, 
+  assume, if, then, else, while, new, class, datatype, trait, extends, ghost, reads, invariant, 
   writes, lemma, forall, exists, match, case, calc, returns, decreases, false, true},
   sensitive=true,
   morecomment=[l]{//},      % Single-line comments
@@ -83,7 +83,7 @@
 \tableofcontents
 \newpage
 
-\section{Introduction} % (fold)
+\section{Introduction}
 \label{sec:introduction}
 \subsection{Why Dafny?}
 When software engineers encounter the field of formal methods and verification, this usually happens
@@ -104,15 +104,15 @@ extended type checker and constantly proves that the provided implementation act
 the specification part of the given function, method or class. This is done by transforming the code into an intermediary
 that a tool called Boogie can understand. The correctness of the Boogie program implies the correctness of the
 Dafny program. Boogie then generates first-order verification rules that are passed to the
-Z3 SMT solver. Any violations of these conditions are passed back as verification errors \cite{Herbert2012}. This
-process is visualized in Figure \ref{fig:build-system}.
+Z3 SMT solver. Any violations of these conditions are passed back as verification errors \cite{Herbert2012}. Apart
+from C\#, Dafny can be compiled to many other programming languages. This process is visualized in
+Figure \ref{fig:build-system}.
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.80\textwidth]{images/dafny-infra.jpg}
 	\caption{The Dafny build system as shown in \cite{Herbert2012}}
 	\label{fig:build-system}
 \end{figure}
-% Searching & modifying arrays
 % Dynamic Frames
 \section{Building Blocks of Dafny}
 \label{sec:foundations}
@@ -122,7 +122,7 @@ Hoare triples, as they build the reasoning framework of Dafny and help to unders
 \subsection{Methods}
 As in other programming languages, a \textit{method} is a block of code that prescribes some behavior. For instance,
 Listing \ref{lst:dafnymethod} shows the declaration of a method called \texttt{Triple}.
-\begin{lstlisting}[style=dafnystyle, caption={A simple method in Dafny.}, label={lst:dafnymethod}]
+\begin{lstlisting}[style=dafnystyle, caption={Simple method in Dafny.}, label={lst:dafnymethod}]
 method Triple(x: int) returns (r: int)
  ensures Average(x) == 3 * x {
   var y := 3 * x;
@@ -142,7 +142,7 @@ will be returned to the caller. The in-parameters however cannot be re-assigned 
 Functions in Dafny are very mathematical in nature, because they are deterministic. Any two invocations of a
 function with the same arguments will result in the same value. Listing \ref{lst:dafnyfunction} shows how a simple
 function named \texttt{Average} looks like.
-\begin{lstlisting}[style=dafnystyle, caption={A simple function in Dafny.}, label={lst:dafnyfunction}]
+\begin{lstlisting}[style=dafnystyle, caption={Simple function in Dafny.}, label={lst:dafnyfunction}]
 function Average(a: int, b: int): int 
  requires 0 <= a && 0 <= b {
   (a + b) / 2
@@ -175,7 +175,7 @@ A recursive function is one that calls itself directly or indirectly. To be able
 functions need a base case - a condition where the function stops calling itself and returns a result. An example
 is shown with a function called \texttt{SeqSum} in Listing \ref{lst:dafnyrec}, which computes the sum of all
 integers in a sequence. On line 4, if the base case isn't met, the function invokes itself with an incremented value for lo.
-\begin{lstlisting}[style=dafnystyle, caption={A function computing the sum of all integers in a sequence recursively.}, label={lst:dafnyrec}]
+\begin{lstlisting}[style=dafnystyle, caption={Function computing the sum of all integers in a sequence recursively.}, label={lst:dafnyrec}]
 function SeqSum(s: seq<int>, lo: int, hi: int): int
   requires 0 <= lo <= hi <= |s|
   decreases hi - lo {
@@ -183,7 +183,6 @@ function SeqSum(s: seq<int>, lo: int, hi: int): int
 }
 \end{lstlisting}
 \subsection{The decreases clause}
-%In more complicated cases it can actually be quite challenging to find 
 Dafny can prove termination by using the \textbf{decreases} clause. If we can label each function invocation with
 a natural number and make sure that successive invocations strictly decrease that label, then it follows
 that at run time the recursive calls can only execute a finite number of times, and that is all the information
@@ -222,7 +221,7 @@ datatype Tree<T> = Leaf(data: T) |
 \end{lstlisting}
 The type \texttt{Tree<T>} shown in Listing \ref{lst:dafnydatatype} can be parameterized with the type of its payload,
 that is, the data stored in the tree. One can also define functions on datatypes.
-\begin{lstlisting}[style=dafnystyle, caption={A function defined on a datatype.}, label={lst:dafnydatafun}]
+\begin{lstlisting}[style=dafnystyle, caption={Function defined on a datatype.}, label={lst:dafnydatafun}]
 function Size<T>(t: Tree<T>): nat {
   match t
   case Leaf(_) => 1
@@ -237,7 +236,7 @@ usually be inferred. If so, as seen on line 4 in Listing \ref{lst:dafnydatafun},
 Very often when working with datatypes, there is a need to know the variant of the datatype value. That is, to know
 which constructor was used to create the value. One could write a function like the one shown in Listing \ref{lst:dafnydatapred}
 that determines this.
-\begin{lstlisting}[style=dafnystyle, caption={A predicate checking if the argument t is a Node.}, label={lst:dafnydatapred}]
+\begin{lstlisting}[style=dafnystyle, caption={Predicate checking if the argument t is a Node.}, label={lst:dafnydatapred}]
 predicate IsNode(t: Tree<T>) {
   match t
   case Leaf(_) => false
@@ -247,7 +246,7 @@ predicate IsNode(t: Tree<T>) {
 Because this is such a common operation, Dafny pre-defines such a \textit{descriminator} for each constructor.
 The name of the discriminator is the name of the constructor followed by a question mark as shown on line 2
 in Listing \ref{lst:dafnydatadiscr}.
-\begin{lstlisting}[style=dafnystyle, caption={A predicate checking if the argument t is a Node.}, label={lst:dafnydatadiscr}]
+\begin{lstlisting}[style=dafnystyle, caption={Function returning the left subtree of a tree.}, label={lst:dafnydatadiscr}]
 function GetLeft(t: Tree<T>): Tree<T>
  requires t.Node? {
   match t
@@ -263,17 +262,107 @@ Line 6 in Listing \ref{lst:dafnydatatype} demonstrates this with the parameters 
 Because destructors are also members of the type, they can be accessed the same way as discriminators.
 
 \section{Loop invariants}
+Many interesting computations are described as repetitions of steps. Apart from recursion,
+the other way of repeating code is the \textit{loop}. The main way to reason about any loop is the
+\textit{loop invariant}. It's part of the loop specification and restricts the state space that the loop is
+allowed to explore \cite{leino2023program}. Another key component is the \textit{loop guard}, which controls
+whether the loop continues to perform steps or it stops doing so.
+\begin{lstlisting}[style=dafnystyle, caption={Simple while loop.}, label={lst:dafnyloop}]
+i := 0;
+while i < 100
+ // decrease 100 - i is added implicitly
+ invariant 0 <= i <= 100 {
+ i := i + 1;
+}
+assert i == 100; // true
+\end{lstlisting}
+In the example shown in Listing \ref{lst:dafnyloop} the loop guard is the condition of the while loop on line 2. The
+loop invariant is defined on line 3 and specifies that i is only allowed to be in the range between 0 and 100. It's
+important that, on entry to the loop, both the loop invariant and the loop guard hold. On exit from the loop, only
+the loop invariant holds. The loop guard is negated. When working with loops, it's a good practice to make the loop
+invariant as restrictive as possible in order to have a clear specification of what needs to happen inside the loop.
+\subsection{Binary search}
+To effectively illustrate the advantages of Dafny, we will analyze the implementation of the binary search
+algorithm and provide a detailed discussion of each step. In this context,
+loop invariants play a crucial role.
+\subsubsection{Precondition}
+Binary search requires the array it searches to be sorted. Listing \ref{lst:dafnybinaryprecond}
+specifies this precondition with the help of the universal quantifier.
+\begin{lstlisting}[style=dafnystyle, caption={All elements of array \texttt{a} are sorted.}, label={lst:dafnybinaryprecond}]
+forall i, j :: 0 <= i < j < a.Length ==> a[i] <= a[j]
+\end{lstlisting}
+It says that if we take two indices into the array, i and j where i is placed to the left of j,
+then the elements at those two indices are ordered properly. The operator \texttt{==>} means implication, i.e.
+if the condition on its left side holds, then the condition to its right side must also hold.
+\subsubsection{Postconditions}
+To begin with, the caller has to be assured that the returned index is inside the array bounds. Line 3 in Listing
+\ref{lst:dafnybinarypostcond} specifies this. If the element we search for exists in the array, we want to
+return the index of its leftmost occurrence. Otherwise we want to return its earliest insertion point.
+The specification has to ensure that all elements in the array that appear before the element at the returned
+index must be smaller than it, as shown on line 4 in Listing \ref{lst:dafnybinarypostcond}. Similarly,
+all elements that appear after it must be greater than or equal to it,
+as indicated on line 5 of Listing \ref{lst:dafnybinarypostcond}.
+\begin{lstlisting}[style=dafnystyle, caption={Binary search pre- and postconditions.}, label={lst:dafnybinarypostcond}]
+method BinarySearch(a: array<int>, key: int) returns (n: int)
+  requires forall i, j :: 0 <= i < j < a.Length ==> a[i] <= a[j]
+  ensures 0 <= n <= a.Length
+  ensures forall i :: 0 <= i < n ==> a[i] < key
+  ensures forall i :: n <= i < a.Length ==> key <= a[i]
+\end{lstlisting}
+\subsubsection{Missing loop invariants}
+The main idea of binary search is that we have two indices, lo and hi, that form a window inside the array. Anything
+to the left of the window is too small to be our element and anything to the right is at least as large. This
+window keeps shrinking until it reaches 0, at which point both lo and hi meet. A logarithmic number of iterations is
+obtained by halving the window with each time. Part of the implementation is shown in Listing \ref{lst:dafnybinarypartimpl}.
+\begin{lstlisting}[style=dafnystyle, caption={Binary search implementation with verifier errors.}, label={lst:dafnybinarypartimpl}]
+// Error: A postcondition couldn't be proved on this return path.
+var lo, hi := 0, a.Length;
+while lo < hi {
+  var mid := (lo + hi) / 2;
+  if a[mid] < key { // Error: index out of range.
+    lo := mid + 1;
+  } else {
+    hi := mid;
+  }
+}
+\end{lstlisting}
+An essential part of the implementation is missing in Listing \ref{lst:dafnybinarypartimpl}, namely the loop
+invariants. Since the loop guard on line 3 holds, we enter the loop, but the automated verifier reports an error on
+line 5, because there is no loop invariant to bind the integer state space of lo and hi to be
+between 0 and \texttt{a.Length} respectively. Furthermore, the verifier reports another error directly at the
+beginning of the method, because the postconditions formulated on lines 4 and 5 in Listing \ref{lst:dafnybinarypostcond}
+are not guaranteed to hold neither during, nor after the loop.
+\subsubsection{Adding loop invariants}
+There exists a very neat, refined design technique
+for loop specifications called "Replace Constant By Loop Variable" described in detail in \cite{leino2023program}.
+Basically, it says you can take your desired postconditions, copy them to use as loop invariants, and then simply
+swap out their constant, in this case n, for the loop index, in this case both lo and hi. Listing
+\ref{lst:dafnybinaryfullimpl} demonstrates these changes.
+\begin{lstlisting}[style=dafnystyle, caption={Binary search implementation withiout verifier errors.}, label={lst:dafnybinaryfullimpl}]
+{
+  var lo, hi := 0, a.Length;
+  while lo < hi
+  invariant 0 <= lo <= hi <= a.Length
+  invariant forall i :: 0 <= i < lo ==> a[i] < key
+  invariant forall i :: hi <= i < a.Length ==> key <= a[i] {
+    var mid := (lo + hi) / 2;
+    if a[mid] < key {
+      lo := mid + 1;
+    } else {
+      hi := mid;
+    }
+  }
+  n := lo;
+}
+\end{lstlisting}
+Finally, the added loop invariants ensure correctness at each loop iteration and establish the postconditions
+afterwards. The whole \texttt{BinarySearch} method is a combination of both Listing \ref{lst:dafnybinarypostcond}
+and Listing \ref{lst:dafnybinaryfullimpl}.
+
+\section{Arrays and simple frames}
 
 
-\section{Results} % (fold)
-\label{sec:results}
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua \citep[p. 48]{Baddeley:1974ts}. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-% section results (end)
-
-\section{Conclusion} % (fold)
-\label{sec:conclusion}
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-% section conclusion (end)
+\section{Classes and dynamic frames}
 
 
 \newpage

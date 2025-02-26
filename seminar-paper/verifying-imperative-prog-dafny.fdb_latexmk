@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex verifying-imperative-prog-dafny"] 1740483417.49434 "verifying-imperative-prog-dafny.aux" "verifying-imperative-prog-dafny.bbl" "verifying-imperative-prog-dafny" 1740483578.92795 0
+["bibtex verifying-imperative-prog-dafny"] 1740587793.46172 "verifying-imperative-prog-dafny.aux" "verifying-imperative-prog-dafny.bbl" "verifying-imperative-prog-dafny" 1740587797.97596 0
   "./references.bib" 1740359549.60736 3038 6c1fc6b19f9c436fc52ba29bc284f914 ""
   "/usr/local/texlive/2024/texmf-dist/bibtex/bst/base/apalike.bst" 1292289607 24635 604dafcc79f521a11ea73e506e1fbd98 ""
-  "verifying-imperative-prog-dafny.aux" 1740483577.30472 5311 5adc57174a50df171ff9d8b309a8df82 "pdflatex"
+  "verifying-imperative-prog-dafny.aux" 1740587796.92678 7129 d6b542c0420c1f9348e0c75d75ada21f "pdflatex"
   (generated)
   "verifying-imperative-prog-dafny.bbl"
   "verifying-imperative-prog-dafny.blg"
   (rewritten before read)
-["pdflatex"] 1740483574.81922 "/Users/bogdankyuchukov/Documents/masters/seminar_deduktive_softwareverifikation/dafny-lecture/seminar-paper/verifying-imperative-prog-dafny.tex" "verifying-imperative-prog-dafny.pdf" "verifying-imperative-prog-dafny" 1740483578.92837 0
-  "/Users/bogdankyuchukov/Documents/masters/seminar_deduktive_softwareverifikation/dafny-lecture/seminar-paper/verifying-imperative-prog-dafny.tex" 1740483573.97891 16998 21ddd67c7415d046183c5bcde3c0d6c7 ""
+["pdflatex"] 1740587793.90759 "/Users/bogdankyuchukov/Documents/masters/seminar_deduktive_softwareverifikation/dafny-lecture/seminar-paper/verifying-imperative-prog-dafny.tex" "verifying-imperative-prog-dafny.pdf" "verifying-imperative-prog-dafny" 1740587797.97623 0
+  "/Users/bogdankyuchukov/Documents/masters/seminar_deduktive_softwareverifikation/dafny-lecture/seminar-paper/verifying-imperative-prog-dafny.tex" 1740587788.01953 21722 02a88f571ffc2d673422415daf273eb6 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/jknappen/ec/tcrm1000.tfm" 1136768653 1536 e07581a4bb3136ece9eeb4c3ffab8233 ""
@@ -125,13 +125,13 @@
   "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
   "images/dafny-infra.jpg" 1740330915.96804 88569 bf166a2b1ec0bbe7abdc7bb8b7fdfed3 ""
   "natbib.cfg" 1740214180 597 034939155d1d9d03faf9b187e66d06d0 ""
-  "verifying-imperative-prog-dafny.aux" 1740483577.30472 5311 5adc57174a50df171ff9d8b309a8df82 "pdflatex"
-  "verifying-imperative-prog-dafny.bbl" 1740483418.56073 785 b22e2d22cd275ba5e0eff26b1828a6e3 "bibtex verifying-imperative-prog-dafny"
-  "verifying-imperative-prog-dafny.lof" 1740483577.30942 154 73e95f5e96844c1de37b8f7325e626b7 "pdflatex"
-  "verifying-imperative-prog-dafny.lol" 1740483577.30956 813 1ef7c7ed9064f98ceaf80893081928e1 "pdflatex"
-  "verifying-imperative-prog-dafny.out" 1740483577.30839 2136 0cdec00eba1919b9d3ca8e9398c41d23 "pdflatex"
-  "verifying-imperative-prog-dafny.tex" 1740483573.97891 16998 21ddd67c7415d046183c5bcde3c0d6c7 ""
-  "verifying-imperative-prog-dafny.toc" 1740483577.30928 1248 d8f4f6ef49c965b009d9c39728f9185a "pdflatex"
+  "verifying-imperative-prog-dafny.aux" 1740587796.92678 7129 d6b542c0420c1f9348e0c75d75ada21f "pdflatex"
+  "verifying-imperative-prog-dafny.bbl" 1740587793.89587 785 b22e2d22cd275ba5e0eff26b1828a6e3 "bibtex verifying-imperative-prog-dafny"
+  "verifying-imperative-prog-dafny.lof" 1740587796.93254 154 73e95f5e96844c1de37b8f7325e626b7 "pdflatex"
+  "verifying-imperative-prog-dafny.lol" 1740587796.93277 1323 758495f2affb0a648717657a3a8daaa9 "pdflatex"
+  "verifying-imperative-prog-dafny.out" 1740587796.93142 3084 6aa93a662479158552d71c02364f9604 "pdflatex"
+  "verifying-imperative-prog-dafny.tex" 1740587788.01953 21722 02a88f571ffc2d673422415daf273eb6 ""
+  "verifying-imperative-prog-dafny.toc" 1740587796.93238 1738 71a5877e992571bab5cbc4304b15f63b "pdflatex"
   (generated)
   "verifying-imperative-prog-dafny.aux"
   "verifying-imperative-prog-dafny.lof"
