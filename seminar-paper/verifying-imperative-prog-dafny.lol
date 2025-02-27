@@ -11,3 +11,6 @@
 \contentsline {lstlisting}{\numberline {11}Binary search pre- and postconditions.}{8}{lstlisting.11}%
 \contentsline {lstlisting}{\numberline {12}Binary search implementation with verifier errors.}{9}{lstlisting.12}%
 \contentsline {lstlisting}{\numberline {13}Binary search implementation withiout verifier errors.}{9}{lstlisting.13}%
+\contentsline {lstlisting}{\numberline {14}Method updating the contents of an array parameter.}{10}{lstlisting.14}%
+\contentsline {lstlisting}{\numberline {15}Method that guarantees a freshly allocated array.}{11}{lstlisting.15}%
+\contentsline {lstlisting}{\numberline {16}Function that reads an array.}{11}{lstlisting.16}%

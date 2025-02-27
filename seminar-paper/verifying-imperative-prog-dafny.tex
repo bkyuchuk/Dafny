@@ -13,7 +13,7 @@
 \lstdefinelanguage{Dafny}{
   morekeywords={method, function, predicate, var, const, type, ensures, requires, modifies, assert, 
   assume, if, then, else, while, new, class, datatype, trait, extends, ghost, reads, invariant, 
-  writes, lemma, forall, exists, match, case, calc, returns, decreases, false, true},
+  writes, lemma, forall, exists, match, case, calc, returns, decreases, false, true, old, fresh},
   sensitive=true,
   morecomment=[l]{//},      % Single-line comments
   morecomment=[s]{/*}{*/},  % Multi-line comments
@@ -70,14 +70,12 @@
 
 \vspace{2cm}
 \begin{abstract}
-	The goal of this work is to show how to formally reason
-	about imperative programming constructs such as
-	loops, arrays and dynamically allocated objects. To be able to achieve that, basic
+	The goal of this work is to show how to formally reason about imperative programming constructs such as assignments,
+	loops and heap allocated objects like arrays. To be able to achieve that, basic
 	Dafny constructs will be shown, such as functions, methods, pre- and postconditions. The discussion thereafter will move
 	towards recursion and termination as well as inductive datatypes. Having learned from those chapters,
-	loop invariants and their usage will be explored. Because analyzing objects in the heap is more challenging,
-	searching and modifying arrays will be covered. The final chapter will include a detailed discussion about Dafny's
-	dynamic frames and their significance.
+	loop invariants and their usage will be explored. The final chapter explain the concept of frames and provide a
+	detailed analysis of arrays.
 \end{abstract}
 \newpage
 \tableofcontents
@@ -356,13 +354,85 @@ swap out their constant, in this case n, for the loop index, in this case both l
 }
 \end{lstlisting}
 Finally, the added loop invariants ensure correctness at each loop iteration and establish the postconditions
-afterwards. The whole \texttt{BinarySearch} method is a combination of both Listing \ref{lst:dafnybinarypostcond}
-and Listing \ref{lst:dafnybinaryfullimpl}.
+afterwards. Moreover, because of the implicit \texttt{decreases} clause, the verifier automatically proves
+the loop is not going to run infinitely. The whole \texttt{BinarySearch} method is a combination of
+both Listing \ref{lst:dafnybinarypostcond} and Listing \ref{lst:dafnybinaryfullimpl}.
 
 \section{Arrays and simple frames}
+An \textit{array} is a simple, mutable data structure stored in the heap and allocated using the \texttt{new} keyword.
+Because heap-allocated storage is accessed via references, the storage itself is not passed as parameter to functions
+and methods \cite{leino2023program}. So that specifications are able to identify relevant pieces of the heap, a
+\textit{frame} is used.
+\subsection{Write frame}
+Apart from pre- and postconditions, the specification of a method also describes what the method is allowed to modify
+and what must be left unchanged. This is expressed by the method's \textit{write frame}, which is defined using the
+\texttt{modifies} clause \cite{leino2023program}. If a method wants to change the contents of an array passed to it as a
+parameter, then it must include a \texttt{modifies} clause in its specification \cite{leino2023program} as shown on
+line 3 in Listing \ref{lst:dafnyarraywrite}.
+\begin{lstlisting}[style=dafnystyle, caption={Method updating the contents of an array parameter.}, label={lst:dafnyarraywrite}]
+method UpdateElements(a: array<int>)
+  requires a.Length == 10
+  modifies a
+  ensures old(a[4]) < a[4]
+  ensures a[6] <= old(a[6])
+  ensures a[8] == old(a[8]) {
+    a[4], a[8] := a[4] + 3, a[8] + 1;
+    a[7], a[8] := 516, a[8] - 1;
+}
+\end{lstlisting}
+This way the caller of \texttt{UpdateElements} will know that by calling the method and passing an array reference
+as an argument, the actual array stored in the heap will have changed according to what the method promises
+in its postcondition.
 
+\subsection{Old values}
+Often, when writing a postcondition for a method, we want to compare the state of an array or object before (pre-state)
+and after (post-state) an update. Usually whatever is written in an \texttt{ensures} clause refers to the post-state.
+To capture a pre-state value, the \texttt{old()} construct is used as demonstrated on lines 4, 5 and 6
+in Listing \ref{lst:dafnyarraywrite}. It should be emphasized that \texttt{old()} only affects heap dereferences in
+its argument. If only a value is passed as an argument or the actual dereferencing happens outside of the
+\texttt{old()}, this would not have the expected behavior.
 
-\section{Classes and dynamic frames}
+\subsection{Fresh arrays}
+A method that allocates a new array internally does not require a \texttt{modifies} clause, given that its caller has no
+way of accessing that array anyway. However, if that newly created array is returned to the caller, there is no
+information that it has been freshly allocated in the method. Thus, the caller is not allowed to modify it. To resolve
+this, the \texttt{fresh()} predicate is used in the postcondition to promise that the array is allocated inside
+the method and hence on behalf of the caller. At this point, the array can be modified as if it was created
+locally. Listing \ref{lst:dafnyarrayfresh} demonstrates this.
+
+\begin{lstlisting}[style=dafnystyle, caption={Method that guarantees a freshly allocated array.}, label={lst:dafnyarrayfresh}]
+method NewArray() returns (a: array<int>)
+  ensures fresh(a) && a.Length == 20 {
+    a := new int[20];
+    var b := new int[30];
+    a[6] := 216;
+    b[7] := 343;
+}
+
+method Caller() {
+  var a := NewArray();
+  a[8] := 512; // not allowed without knowing 'a' is fresh
+}
+\end{lstlisting}
+\subsection{Read frame}
+Given that a function cannot modify anything, it does not need a write frame. However, a function may need a
+\textit{read frame}, which announces the function's dependencies on the heap and is specified using a
+\texttt{reads} clause, as shown on line 3 in Listing \ref{lst:dafnyarrayread}. This dependency information is
+important, because it's used to determine whether various mutations of the heap aﬀect the value of the
+function \cite{leino2023program}.
+\begin{lstlisting}[style=dafnystyle, caption={Function that reads an array.}, label={lst:dafnyarrayread}]
+predicate IsZeroArray(a: array<int>, lo: int, hi: int)
+  requires 0 <= lo <= hi <= a.Length
+  reads a
+  decreases hi - lo {
+    lo == hi || (a[lo] == 0 && IsZeroArray(a, lo + 1, hi))
+}
+\end{lstlisting}
+In summary, using \textit{read and write frames} specify which parts of the heap a function may depend on and which
+parts of the heap a method is allowed to modify. Both can denote not only a single reference to an array or an object,
+but also a set of references.
+
+\section{Conclusion}
 
 
 \newpage
