@@ -14,8 +14,16 @@ Leino, K. R.~M. (2023).
 \newblock {\em Program Proofs}.
 \newblock MIT Press.
 
+\bibitem[Li et~al., 2025]{li2025dafnyverificationawareintermediatelanguage}
+Li, Y.~C., Zetzsche, S., and Somayyajula, S. (2025).
+\newblock Dafny as verification-aware intermediate language for code generation.
+
 \bibitem[Reid et~al., 2020]{reid2020makingformalmethodsnormal}
 Reid, A., Church, L., Flur, S., de~Haas, S., Johnson, M., and Laurie, B. (2020).
 \newblock Towards making formal methods normal: meeting developers where they are.
+
+\bibitem[Álvaro Silva et~al., 2024]{silva2024leveraginglargelanguagemodels}
+Álvaro Silva, Mendes, A., and Ferreira, J.~F. (2024).
+\newblock Leveraging large language models to boost dafny's developers productivity.
 
 \end{thebibliography}

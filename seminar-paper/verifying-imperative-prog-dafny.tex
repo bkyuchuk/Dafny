@@ -433,7 +433,17 @@ parts of the heap a method is allowed to modify. Both can denote not only a sing
 but also a set of references.
 
 \section{Conclusion}
-
+To summarize, this work demonstrated some of Dafny's primary capabilities that enable software engineers to use
+formal verification methods during development and thus to increase code quality and to greatly reduce bugs. The
+future of Dafny looks bright, with currently a lot of ongoing research expanding its usage. At present,
+AI-powered coding assistants and code generators are rapidly gaining
+popularity. Although their generated code is oftentimes faulty, it's being used nonetheless.
+\cite{li2025dafnyverificationawareintermediatelanguage} propose a way to considerably improve that.
+By first guiding the LLM to generate Dafny code, it can then be automatically validated for correctness
+against the agreed-upon specifications. Only then the correct Dafny program is compiled to the target
+language and returned to the user. Even though writing lemmas and calculational proofs wasn't covered in this work, they
+are an integral part of Dafny and can be quite challenging. \cite{silva2024leveraginglargelanguagemodels}
+also leverage LLMs to assist in generating proofs when they are needed to support the Dafny verifier.
 
 \newpage
 
